@@ -4,12 +4,13 @@
         const BadInput = 350;
         const EvilInput = 351;
         const ServerError = 400;
+        const WrongMethod = 300;
         
     }
     class Response {
         
-        public $rc;
-        public $rb;
+        private $rc;
+        private $rb;
         function __construct($code, $body) {
             $this->rc = $code;
             $this->rb = $body;

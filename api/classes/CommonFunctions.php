@@ -1,7 +1,10 @@
 <?php
     class CommonFunctions {
-        function constructor() {
+        function __construct() {
             
+        }
+        public function sanitize($inputString) {
+            return htmlspecialchars(strip_tags(trim($inputString)));
         }
     }
 ?>
