@@ -21,6 +21,15 @@
             $decoded = $this->jwt::decode($token, $this->config['jwt']['secret_key'], array('HS256'));
             return $decoded;
         }
+        public function getUser()
+        {
+            $token = $this->getToken();
+            if(!$token) 
+            {
+                return false;
+            }
+            return $token->username;
+        }
         public function setToken($params) 
         {
             return $this->jwt::encode($params, $this->config['jwt']['secret_key']);

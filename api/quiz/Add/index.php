@@ -30,6 +30,8 @@
 
                 if($stmt->execute())
                 {
+                    $cVal = "question = " . $question . ", correct answer = " . $corAns . ", wrong answer 1 = " . $wrongAns1 . ", wrong answer 2 = " . $wrongAns2 . ", wrong answer 3 = " . $wrongAns3;
+                    $c->addToChangeLog("qa", $cVal);
                     $response = new Response(ResponseCodes::Created, "Insert was a success");
                 }
                 else

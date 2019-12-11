@@ -8,7 +8,7 @@
         public $cf;
         public $auth;
         private $config;
-        function __construct($confArr) {
+        public function __construct($confArr) {
             $this->config = $confArr;
             $this->cf = new CommonFunctions();
             $this->auth = new Auth($this->config);
@@ -22,7 +22,7 @@
             
 
         }
-        function verifyUser() {
+        public function verifyUser() {
             $token = $this->auth->getToken();
             if(!$token) {
                 return false;
@@ -39,6 +39,26 @@
                 } else {
                     return false;
                 }
+            }
+        }
+        public function AddToChangeLog($type, $value)
+        {
+            $user = $this->cf->sanitize($this->auth->getUser());
+            if(!$user)
+            {
+                return false;
+            }
+            $clStmt = $this->conn->prepare(
+                "INSERT INTO changelog (user, type, val) VALUES(?, ?, ?)"
+            );
+            $clStmt->bind_param("sss", $user, $type, $value);
+            if($stmt->execute())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

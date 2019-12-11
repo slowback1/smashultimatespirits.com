@@ -14,6 +14,8 @@
                 $stmt->bind_param('i', $del);
                 if($stmt->execute())
                 {
+                    $cVal = "id = " . $del;
+                    $c->addToChangeLog("qd", $cVal);
                     $response = new Response(ResponseCodes::Deleted, "Deletion Successful");
                 }
                 else

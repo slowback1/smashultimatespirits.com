@@ -18,6 +18,8 @@
 
                 if($stmt->execute()) 
                 {
+                    $clVal = "id = " . strval($del);
+                    $c->addToChangeLog("sd", $clVal);
                     $response = new Response(ResponseCodes::Deleted, "Deletion Successful");
                 } else 
                 {

@@ -27,6 +27,8 @@
                 $author = $c->cf->sanitize($postBody->author);
                 $year = $c->cf->sanitize($postBody->year);
 
+
+
                 $stmt = $c->conn->prepare(
                     "INSERT INTO spirits (id, name, game, series, description, author, year) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     
@@ -36,6 +38,9 @@
                 //stmt->execute will return false is query fails
                 if($stmt->execute()) 
                 {
+                    $clVal = "id = " . strval($id) . ", name = " . $name . ", game = " . $game . ", series = " . $series . ", description = " . $description . ", author = " . $author . ", release_year = " . $year;
+                    $c->addToChangeLog("sa", $clVal);
+
                     $response = new Response(ResponseCodes::Created, "Insert was a success");
                 } 
                 else 

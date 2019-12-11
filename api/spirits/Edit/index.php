@@ -38,6 +38,8 @@
                 //stmt->execute will return false is query fails
                 if($stmt->execute()) 
                 {
+                    $clVal = "id = " . strval($id) . ", name = " . $name . ", game = " . $game . ", series = " . $series . ", description = " . $description . ", author = " . $author . ", release_year = " . $year;
+                    $c->addToChangeLog("se", $clVal);
                     $response = new Response(ResponseCodes::Edited, "Update was a success");
                 } 
                 else 

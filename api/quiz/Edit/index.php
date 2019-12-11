@@ -32,6 +32,8 @@
 
                 if($stmt->execute())
                 {
+                    $cVal = "id = " . $id . ",question = " . $question . ", correct answer = " . $corAns . ", wrong answer 1 = " . $wrongAns1 . ", wrong answer 2 = " . $wrongAns2 . ", wrong answer 3 = " . $wrongAns3;
+                    $c->addToChangeLog("qe", $cVal);
                     $response = new Response(ResponseCodes::Edited, "Edit was a success");
                 }
                 else
