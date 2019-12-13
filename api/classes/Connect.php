@@ -1,13 +1,13 @@
 <?php
-    include substr(dirname(__FILE__),0,-7) . "config\index.php";
-    include dirname(__FILE__) . '\Auth.php';
-    include dirname(__FILE__) . '\CommonFunctions.php';
+    include substr(dirname(__FILE__),0,-7) . "config/index.php";
+    include dirname(__FILE__) . '/Auth.php';
+    include dirname(__FILE__) . '/CommonFunctions.php';
     
     class Connection {
         public $conn;
         public $cf;
         public $auth;
-        private $config;
+        public $config;
         public function __construct($confArr) {
             $this->config = $confArr;
             $this->cf = new CommonFunctions();
@@ -49,10 +49,10 @@
                 return false;
             }
             $clStmt = $this->conn->prepare(
-                "INSERT INTO changelog (user, type, val) VALUES(?, ?, ?)"
+                "INSERT INTO changelog (user, type, value) VALUES (?, ?, ?)"
             );
             $clStmt->bind_param("sss", $user, $type, $value);
-            if($stmt->execute())
+            if($clStmt->execute())
             {
                 return true;
             }

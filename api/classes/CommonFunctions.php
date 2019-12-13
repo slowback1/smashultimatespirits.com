@@ -4,12 +4,13 @@
             
         }
         public function sanitize($inputString) {
-            return htmlspecialchars(strip_tags(trim($inputString)));
+            return (htmlspecialchars(strip_tags(trim($inputString))));
         }
         public function addSpiritToResponse(
             $id, 
             $name, 
             $game, 
+            $game2,
             $series, 
             $description, 
             $author, 
@@ -19,6 +20,7 @@
                 $id, 
                 $name, 
                 $game, 
+                $game2,
                 $series, 
                 $description, 
                 $author, 

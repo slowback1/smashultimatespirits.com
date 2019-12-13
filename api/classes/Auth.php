@@ -1,5 +1,5 @@
 <?php
-    include substr(dirname(__FILE__),0,-7) . "config\\vendor\\firebase\php-jwt\src\JWT.php";
+    include substr(dirname(__FILE__),0,-7) . "config/vendor/firebase/php-jwt/src/JWT.php";
     
     class Auth 
     {
@@ -18,8 +18,14 @@
                 return false;
             }
             $token = $headers['token'];
-            $decoded = $this->jwt::decode($token, $this->config['jwt']['secret_key'], array('HS256'));
-            return $decoded;
+            if($this->jwt::decode($token, $this->config['jwt']['secret_key'], array('HS256')))
+            {
+            return $this->jwt::decode($token, $this->config['jwt']['secret_key'], array('HS256'));
+            }
+            else
+            {
+                return false;
+            }
         }
         public function getUser()
         {
@@ -33,6 +39,21 @@
         public function setToken($params) 
         {
             return $this->jwt::encode($params, $this->config['jwt']['secret_key']);
+        }
+        public function hash($pass)
+        {
+            return password_hash($pass, PASSWORD_BCRYPT);
+        }
+        public function compareHash($given, $stored)
+        {
+            if(password_verify($given, $stored))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 ?>

@@ -24,7 +24,7 @@
                 $max = intval($rarr[0]);
             }
 
-            $stmt = $c->conn->prepare("SELECT id, name, game, series, description, author, release_year FROM spirits WHERE id BETWEEN ? AND ?");
+            $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits WHERE id BETWEEN ? AND ? ORDER BY id");
             $stmt->bind_param("ii", $min, $max);
         }
         //block for singular queries
@@ -34,18 +34,18 @@
             //get random one
             if($id === 'r') 
             {
-                $stmt = $c->conn->prepare("SELECT id, name, game, series, description, author, release_year FROM spirits ORDER BY RAND() LIMIT 1");
+                $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits ORDER BY RAND() LIMIT 1");
             } 
             else 
             {
-                $stmt = $c->conn->prepare("SELECT id, name, game, series, description FROM spirits WHERE id = ? LIMIT 1");
+                $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits WHERE id = ? LIMIT 1");
                 $stmt->bind_param("i", $id);
             }
         }
         //block for all queries 
         else 
         {
-            $stmt = $c->conn->prepare("SELECT id, name, game, series, description, author, release_year FROM spirits ORDER BY id");  
+            $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits ORDER BY id");  
         }
         
         $stmt->execute();
@@ -54,11 +54,12 @@
         $stmt->bind_result(
             $id,
             $name, 
-            $game, 
+            $game,
+            $game2, 
             $series, 
             $description, 
             $author, 
-            $release_year
+            $release_year 
         );
 
         $resArr = array();
@@ -68,6 +69,7 @@
                 $id,
                 $name,
                 $game, 
+                $game2,
                 $series,
                 $description,
                 $author,

@@ -12,6 +12,7 @@
             isset($postBody->id) &&
             isset($postBody->name) &&
             isset($postBody->game) &&
+            isset($postBody->game2) &&
             isset($postBody->series) &&
             isset($postBody->description) && 
             isset($postBody->author) && 
@@ -22,6 +23,7 @@
                 $id = $c->cf->sanitize($postBody->id);
                 $name = $c->cf->sanitize($postBody->name);
                 $game = $c->cf->sanitize($postBody->game);
+                $game2 = $c->cf->sanitize($postBody->game2);
                 $series = $c->cf->sanitize($postBody->series);
                 $description = $c->cf->sanitize($postBody->description);
                 $author = $c->cf->sanitize($postBody->author);
@@ -30,15 +32,15 @@
 
 
                 $stmt = $c->conn->prepare(
-                    "INSERT INTO spirits (id, name, game, series, description, author, year) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO spirits (id, name, game, game2, series, description, author, release_year) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                     
-                $stmt->bind_param("isssssi", 
-                $id, $name, $game, $series, $description, $author, $year);
+                $stmt->bind_param("issssssi", 
+                $id, $name, $game, $game2, $series, $description, $author, $year);
 
                 //stmt->execute will return false is query fails
                 if($stmt->execute()) 
                 {
-                    $clVal = "id = " . strval($id) . ", name = " . $name . ", game = " . $game . ", series = " . $series . ", description = " . $description . ", author = " . $author . ", release_year = " . $year;
+                    $clVal = "id = " . strval($id) . ", name = " . $name . ", game = " . $game . ", game2 = " . $game2 . ", series = " . $series . ", description = " . $description . ", author = " . $author . ", release_year = " . $year;
                     $c->addToChangeLog("sa", $clVal);
 
                     $response = new Response(ResponseCodes::Created, "Insert was a success");

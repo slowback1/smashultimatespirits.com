@@ -1,5 +1,6 @@
 <?php
     include '../../models/Response.php';
+    include '../../models/Token.php';
     include '../../classes/Connect.php';
 
     if($_SERVER['REQUEST_METHOD'] === "PUT")
@@ -22,14 +23,16 @@
                 
                 if($u == $user && $p == $pass)
                 {
-                    #TO-DO, write a hashing function (probably in the Auth class)
-                    #np -> hash it!
+                    $hp = $c->auth->hash($np);
                     $stmt = $c->conn->prepare("UPDATE users SET password = ? WHERE username = ?");
-                    $stmt->bind_param("ss", $p, $u);
+                    $stmt->bind_param("ss", $hp, $u);
                     
                     if($stmt->execute())
                     {
-                        $response = new Response(ResponseCodes::Edited, "Edit Successful");
+                        $tci = new Token($u, $hp);
+                        $tokenParams = $tci->build();
+                        $nuToken = $c->auth->setToken($tokenParams);
+                        $response = new Response(ResponseCodes::Edited, $nuToken);
                     }
                     else
                     {

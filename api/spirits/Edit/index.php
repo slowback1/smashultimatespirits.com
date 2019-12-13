@@ -13,6 +13,7 @@
                 isset($postBody->id) &&
                 isset($postBody->name) &&
                 isset($postBody->game) &&
+                isset($postBody->game2) &&
                 isset($postBody->series) &&
                 isset($postBody->description) && 
                 isset($postBody->author) && 
@@ -23,17 +24,18 @@
                     $id = $c->cf->sanitize($postBody->id);
                     $name = $c->cf->sanitize($postBody->name);
                     $game = $c->cf->sanitize($postBody->game);
+                    $game2 = $c->cf->sanitize($postBody->game2);
                     $series = $c->cf->sanitize($postBody->series);
                     $description = $c->cf->sanitize($postBody->description);
                     $author = $c->cf->sanitize($postBody->author);
                     $year = $c->cf->sanitize($postBody->year);
 
                 $stmt = $c->conn->prepare(
-                    "UPDATE spirits SET name = ?, game = ?, series = ?, description = ?, author = ?, year = ? WHERE id= ? LIMIT 1"
+                    "UPDATE spirits SET name = ?, game = ?, game2 = ?, series = ?, description = ?, author = ?, release_year = ? WHERE id= ? LIMIT 1"
                 );
                 
-                $stmt->bind_param("sssssii", 
-                $name, $game, $series, $description, $author, $year, $id);
+                $stmt->bind_param("ssssssii", 
+                $name, $game, $game2, $series, $description, $author, $year, $id);
 
                 //stmt->execute will return false is query fails
                 if($stmt->execute()) 
