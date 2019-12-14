@@ -2,11 +2,12 @@
     include './models/Response.php';
 
     $body = array(
-        "message" => "this is a route tree for the Smash Ultimate Spirits API, assume all GET params are in the url, and all POST, PUT, and DELETE params are in a JSON body.  If 'Requires Authentication' is true, then a header named 'token' that contains a user's JWT is required for authentication",
+        "message" => "this is a route tree for the Smash Ultimate Spirits API, assume all GET params are in the url, and all POST, PUT, and DELETE params are in a JSON body.  If 'Requires Authentication' is true, then a header named 'token' that contains a user's JWT is required for authentication.  If IsPublic is true, CORS will allow any origin URIs, otherwise, CORS will only allow origins from smashultimatespirits.com",
         "routes" => array(
             "Spirits" => array(
                 "Add" => array(
                     "Allowed Method" => "POST",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "id"   => "int",
@@ -20,6 +21,7 @@
                 ),
                 "Delete" => array(
                     "Allowed Method" => "DELETE",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "id" => "int"
@@ -28,6 +30,7 @@
                 ),
                 "Edit" => array(
                     "Allowed Method" => "PUT",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "id"   => "int",
@@ -41,6 +44,7 @@
                 ),
                 "Get" => array(
                     "Allowed Method" => "GET",
+                    "IsPublic" => true,
                     "Requires Authentication" => false,
                     "Params" => array(
                         "id" => "int OR 'r'",
@@ -50,6 +54,7 @@
                 ),
                 "Search" => array(
                     "Allowed Method" => "GET",
+                    "IsPublic" => true,
                     "Requires Authentication" => false,
                     "Params" => array(
                         "type" => "enum(0 => name, 1 => game,2 => series)",
@@ -62,6 +67,7 @@
             "Quiz" => array(
                 "Add" => array(
                     "Allowed Method" => "POST",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "question" => "string",
@@ -74,6 +80,7 @@
                 ),
                 "Delete" => array(
                     "Allowed Method" => "DELETE",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "id" => "int"
@@ -82,6 +89,7 @@
                 ),
                 "Edit" => array(
                     "Allowed Method" => "PUT",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "id" => "int",
@@ -95,6 +103,7 @@
                 ),
                 "Get" => array(
                     "Allowed Method" => "GET",
+                    "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
                         "id" => "int"
@@ -103,6 +112,7 @@
                 ),
                 "Verify" => array(
                     "Allowed Method" => "GET",
+                    "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
                         "id" => "int",
@@ -114,6 +124,7 @@
             "User" => array(
                 "ChangePassword" => array(
                     "Allowed Method" => "PUT",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
                         "username" => "string",
@@ -124,12 +135,14 @@
                 ),
                 "Delete" => array(
                     "Allowed Method" => "DELETE",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => "none",
                     "Description" => "Deletes user account from database"
                 ),
                 "Login" => array(
                     "Allowed Method" => "POST",
+                    "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
                         "username" => "string",
@@ -139,6 +152,7 @@
                 ),
                 "Register" => array(
                     "Allowed Method" => "POST",
+                    "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
                         "username" => "string",
@@ -149,9 +163,21 @@
                 ),
                 "Verify" => array(
                     "Allowed Method" => "GET",
+                    "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => "none",
                     "Description" => "verifies that user is logged in"
+                )
+            ),
+            "ChangeLog" => array(
+                "Get" => array(
+                    "Allowed Method" => "GET",
+                    "IsPublic" => false,
+                    "Requires Authentication" => true,
+                    "Params" => array(
+                        "range" => "string with the form 'int'-'int'"
+                    ),
+                    "Description" => "Grabs Changelog from database.  Range param is optional."
                 )
             )
 

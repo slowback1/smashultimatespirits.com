@@ -2,6 +2,8 @@
     include '../../models/Response.php';
     include '../../classes/Connect.php';
 
+    $c->cf->setCors("private");
+
     if($_SERVER['REQUEST_METHOD'] === "DELETE")
     {
         if($c->verifyUser())

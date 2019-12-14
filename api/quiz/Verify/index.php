@@ -2,6 +2,8 @@
     include '../../models/Response.php';
     include '../../classes/Connect.php';
 
+    $c->cf->setCors("private");
+
     if($_SERVER['REQUEST_METHOD'] === "POST")
     {
         $postBody = json_decode(file_get_contents('php://input'));

@@ -2,7 +2,7 @@
     include '../../models/Response.php';
     include '../../models/Token.php';
     include '../../classes/Connect.php';
-
+    $c->cf->setCors("private");
     if($_SERVER['REQUEST_METHOD'] === "PUT")
     {
         if($c->verifyUser())

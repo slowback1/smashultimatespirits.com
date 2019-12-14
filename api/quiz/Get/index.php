@@ -3,6 +3,8 @@
     include '../../models/Response.php';
     include '../../classes/Connect.php';
 
+    $c->cf->setCors("private");
+
     function addQuestionToResponse(
         $id,
         $question,
