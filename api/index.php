@@ -4,9 +4,10 @@
     $body = array(
         "message" => "this is a route tree for the Smash Ultimate Spirits API, assume all GET params are in the url, and all POST, PUT, and DELETE params are in a JSON body.  If 'Requires Authentication' is true, then a header named 'token' that contains a user's JWT is required for authentication.  If IsPublic is true, CORS will allow any origin URIs, otherwise, CORS will only allow origins from smashultimatespirits.com",
         "routes" => array(
-            "Spirits" => array(
+            "spirits" => array(
                 "Add" => array(
                     "Allowed Method" => "POST",
+                    "Route" => "/spirits/add/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -21,6 +22,7 @@
                 ),
                 "Delete" => array(
                     "Allowed Method" => "DELETE",
+                    "Route" => "/spirits/delete/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -30,6 +32,7 @@
                 ),
                 "Edit" => array(
                     "Allowed Method" => "PUT",
+                    "Route" => "/spirits/edit/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -44,6 +47,7 @@
                 ),
                 "Get" => array(
                     "Allowed Method" => "GET",
+                    "Route" => "/spirits/get/",
                     "IsPublic" => true,
                     "Requires Authentication" => false,
                     "Params" => array(
@@ -54,6 +58,7 @@
                 ),
                 "Search" => array(
                     "Allowed Method" => "GET",
+                    "Route" => "/spirits/search/",
                     "IsPublic" => true,
                     "Requires Authentication" => false,
                     "Params" => array(
@@ -67,6 +72,7 @@
             "Quiz" => array(
                 "Add" => array(
                     "Allowed Method" => "POST",
+                    "Route" => "/quiz/add/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -80,6 +86,7 @@
                 ),
                 "Delete" => array(
                     "Allowed Method" => "DELETE",
+                    "Route" => "/quiz/delete/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -89,6 +96,7 @@
                 ),
                 "Edit" => array(
                     "Allowed Method" => "PUT",
+                    "Route" => "/quiz/edit/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -103,6 +111,7 @@
                 ),
                 "Get" => array(
                     "Allowed Method" => "GET",
+                    "Route" => "/quiz/get/",
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
@@ -112,6 +121,7 @@
                 ),
                 "Verify" => array(
                     "Allowed Method" => "GET",
+                    "Route" => "/quiz/verify/",
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
@@ -124,6 +134,7 @@
             "User" => array(
                 "ChangePassword" => array(
                     "Allowed Method" => "PUT",
+                    "Route" => "/user/changepassword/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
@@ -135,6 +146,7 @@
                 ),
                 "Delete" => array(
                     "Allowed Method" => "DELETE",
+                    "Route" => "/user/delete/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => "none",
@@ -142,6 +154,7 @@
                 ),
                 "Login" => array(
                     "Allowed Method" => "POST",
+                    "Route" => "/user/login/",
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
@@ -152,6 +165,7 @@
                 ),
                 "Register" => array(
                     "Allowed Method" => "POST",
+                    "Route" => "/user/register/",
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
@@ -163,6 +177,7 @@
                 ),
                 "Verify" => array(
                     "Allowed Method" => "GET",
+                    "Route" => "/user/verify/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => "none",
@@ -172,6 +187,7 @@
             "ChangeLog" => array(
                 "Get" => array(
                     "Allowed Method" => "GET",
+                    "Route" => "/changelog/get/",
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
