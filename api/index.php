@@ -11,12 +11,12 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "id"   => "int",
-                        "name" => "string",
-                        "game" => "string",
-                        "series" => "string",
-                        "description" => "string",
-                        "author" => "string"
+                        "id"   => "int [REQUIRED]",
+                        "name" => "string [REQUIRED]",
+                        "game" => "string [REQUIRED]",
+                        "series" => "string [REQUIRED]",
+                        "description" => "string [REQUIRED]",
+                        "author" => "string [REQUIRED]"
                     ),
                     "Description" => "Add a spirit into the database"
                 ),
@@ -26,7 +26,7 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "id" => "int"
+                        "id" => "int [REQUIRED]"
                     ),
                     "Description" => "Deletes a spirit from the database"
                 ),
@@ -36,11 +36,11 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "id"   => "int",
-                        "name" => "string",
-                        "game" => "string",
-                        "series" => "string",
-                        "description" => "string",
+                        "id"   => "int [REQUIRED]",
+                        "name" => "string [REQUIRED]",
+                        "game" => "string [REQUIRED]",
+                        "series" => "string [REQUIRED]",
+                        "description" => "string [REQUIRED]",
                         "author" => "string"
                     ),
                     "Description" => "Edits a spirit from the database.  Id is the only required param."
@@ -51,8 +51,8 @@
                     "IsPublic" => true,
                     "Requires Authentication" => false,
                     "Params" => array(
-                        "id" => "int OR 'r'",
-                        "range" => "string with the form 'int'-'int'"
+                        "id" => "int OR 'r' [OPTIONAL]",
+                        "range" => "string with the form 'int'-'int' [OPTIONAL]"
                     ),
                     "Description" => "Gets spirits based on params.  No params will retrieve all spirits, id with an int will retrieve the one spirit with that id, id with r will retrieve a random spirit, and range will retrieve all spirits with the two ints provided, inclusive."
                 ),
@@ -62,9 +62,9 @@
                     "IsPublic" => true,
                     "Requires Authentication" => false,
                     "Params" => array(
-                        "type" => "enum(0 => name, 1 => game,2 => series)",
-                        "query" => "string",
-                        "quantity" => "int"
+                        "type" => "string (either 'name', 'game1', 'game2', or 'series') [REQUIRED]",
+                        "query" => "string [REQUIRED]",
+                        "quantity" => "int [REQUIRED]"
                     ),
                     "Description" => "returns spirit data based on search results.  Quantity is optional, and if not given, will default to 30."
                 )
@@ -76,11 +76,11 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "question" => "string",
-                        "corAns" => "int",
-                        "wrongAns1" => "int",
-                        "wrongAns2" => "int",
-                        "wrongAns3" => "int"
+                        "question" => "string [REQUIRED]",
+                        "corAns" => "int [REQUIRED]",
+                        "wrongAns1" => "int [REQUIRED]",
+                        "wrongAns2" => "int [REQUIRED]",
+                        "wrongAns3" => "int [REQUIRED]"
                     ),
                     "Description" => "adds a quiz question to the database.  Wrong answers 1, 2, and 3 can have 0 as an input to have a random wrong answer."
                 ),
@@ -90,7 +90,7 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "id" => "int"
+                        "id" => "int [REQUIRED]"
                     ),
                     "Description" => "deletes a quiz question from the database."
                 ),
@@ -100,12 +100,12 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "id" => "int",
-                        "question" => "string",
-                        "corAns" => "int",
-                        "wrongAns1" => "int",
-                        "wrongAns2" => "int",
-                        "wrongAns3" => "int"
+                        "id" => "int [OPTIONAL]",
+                        "question" => "string [OPTIONAL]",
+                        "corAns" => "int [OPTIONAL]",
+                        "wrongAns1" => "int [OPTIONAL]",
+                        "wrongAns2" => "int [OPTIONAL]",
+                        "wrongAns3" => "int [OPTIONAL]"
                     ),
                     "Description" => "edits a quiz question.  Id is the only required parameter"
                 ),
@@ -115,7 +115,7 @@
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
-                        "id" => "int"
+                        "id" => "int [OPTIONAL]"
                     ),
                     "Description" => "gets quiz question from database.  Id is optional, and if not given, returns all quiz questions instead."
                 ),
@@ -125,8 +125,8 @@
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
-                        "id" => "int",
-                        "answer" => "int"
+                        "id" => "int [REQUIRED]",
+                        "answer" => "int [REQUIRED]"
                     ),
                     "Description" => "returns true or false, depending on if user gets question is correct."
                 )
@@ -138,9 +138,9 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "username" => "string",
-                        "oldpassword" => "string",
-                        "newpassword" => "string"
+                        "username" => "string [REQUIRED]",
+                        "oldpassword" => "string [REQUIRED]",
+                        "newpassword" => "string [REQUIRED]"
                     ),
                     "Description" => "changes password.  Returns a new JWT"
                 ),
@@ -158,8 +158,8 @@
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
-                        "username" => "string",
-                        "password" => "string"
+                        "username" => "string [REQUIRED]",
+                        "password" => "string [REQUIRED]"
                     ),
                     "Description" => "Attempts to log in user.  Will send a JWT if authorization is successful."
                 ),
@@ -169,9 +169,9 @@
                     "IsPublic" => false,
                     "Requires Authentication" => false,
                     "Params" => array(
-                        "username" => "string",
-                        "password" => "string",
-                        "secretMessage" => "string"
+                        "username" => "string [REQUIRED]",
+                        "password" => "string [REQUIRED]",
+                        "secretKey" => "string [REQUIRED]"
                     ),
                     "Description" => "Attempts to register a new user.  Will send a JWT if authorization is successful"
                 ),
@@ -191,7 +191,7 @@
                     "IsPublic" => false,
                     "Requires Authentication" => true,
                     "Params" => array(
-                        "range" => "string with the form 'int'-'int'"
+                        "range" => "string with the form 'int'-'int' [OPTIONAL]"
                     ),
                     "Description" => "Grabs Changelog from database.  Range param is optional."
                 )

@@ -1,5 +1,5 @@
 <?php
-    include '../../models/Changelog.php';
+    include '../../models/ChangeLog.php';
     include '../../models/Response.php';
     include '../../classes/Connect.php';
 
