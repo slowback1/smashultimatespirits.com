@@ -16,6 +16,7 @@ class App extends Component {
       spiritTotal: 0,
       fdMounted: false,
       isFullyLoaded: false,
+      autoloadEnabled: false,
     }
   }
   updateSpirits(s){
@@ -50,7 +51,8 @@ class App extends Component {
     if(this.state.spiritTotal < 1) {
       this.getTotalSpirits();
     }
-    if(!this.state.isFullyLoaded) {
+    this.setState({fdMounted: true});
+    if(!this.state.isFullyLoaded && this.state.autoloadEnabled) {
       setInterval(() => {
         this.setState({fdMounted: true});
       }, 2500);
@@ -74,6 +76,7 @@ class App extends Component {
             }
             <Body
               spirits={this.state.spirits}
+              spiritTotal={this.state.spiritTotal}
             />
       </div>
     );

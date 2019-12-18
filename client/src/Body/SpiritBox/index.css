@@ -1,0 +1,15 @@
+.spiritBox {
+    width: 15vw;
+    height: 32vh;
+    display: flex;
+    flex-direction: column;
+
+}
+.si {
+    width: 40%;
+    height: auto;
+}
+.sericon {
+    width: 14px;
+    height: 14px;
+}
