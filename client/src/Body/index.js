@@ -25,6 +25,7 @@ class Body extends Component {
         this.setState({
             page: 0,
         });
+        
     }
     nextSpirit() {
         const isCurrentSpirit = (element) => element === this.state.selectedSpirit;
@@ -54,6 +55,8 @@ class Body extends Component {
                 changeToHome={this.changeToHome}
                 nextSpirit={this.nextSpirit}
                 previousSpirit={this.previousSpirit}
+                spirits={this.props.spirits}
+                page={this.state.page}
             />
         let rh;
         switch(this.state.page) {

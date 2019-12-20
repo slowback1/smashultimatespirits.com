@@ -16,12 +16,13 @@ class App extends Component {
       spiritTotal: 0,
       fdMounted: false,
       isFullyLoaded: false,
-      autoloadEnabled: false,
+      autoloadEnabled: true,
     }
   }
   updateSpirits(s){
     let sdata = this.state.spirits;
     sdata.push(s);
+    sdata.sort(this.compareSpirits)
     this.setState({      
       spirits: sdata
     });
@@ -46,6 +47,15 @@ class App extends Component {
         }
       })
       .catch(err => console.error(err));
+  }
+  compareSpirits(a, b) {
+    if(a.id < b.id) {
+      return -1;
+    }
+    if(a.id > b.id) {
+      return 1;
+    }
+    return 0;
   }
   componentDidMount(){
     if(this.state.spiritTotal < 1) {
