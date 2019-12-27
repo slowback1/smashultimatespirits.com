@@ -31,14 +31,13 @@
             $stmt = $this->conn->prepare("SELECT username FROM users WHERE username = ?");
             $uname = $this->cf->sanitize($username);
             $stmt->bind_param("s", $uname);
-            $stmt->execute();
-            $stmt->bind_result($u);
-            while($stmt->fetch()) {
-                if($u == $username) {
-                    return true;
-                } else {
-                    return false;
-                }
+            if($stmt->execute())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public function AddToChangeLog($type, $value)
