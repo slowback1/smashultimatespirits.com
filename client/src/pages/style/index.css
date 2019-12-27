@@ -1,0 +1,15 @@
+.s64 button {
+    background-color: blue;
+}
+.Melee button {
+    background-color: red;
+}
+.Brawl button {
+    background-color: green;
+}
+.WiiU button {
+    background-color: brown;
+}
+.Ultimate button {
+    background-color: cyan;
+}

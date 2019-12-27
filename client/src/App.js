@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Config from './config/index.json';
 import FetchData from './FetchData/index';
-import Body from './Body/index';
+import Page from './pages/index';
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +9,8 @@ class App extends Component {
     this.updateSpirits = this.updateSpirits.bind(this);
     this.dismountFd = this.dismountFd.bind(this);
     this.doneLoading = this.doneLoading.bind(this);
+    this.mountFd = this.mountFd.bind(this);
+
 
     this.state = {
       spirits: [],
@@ -17,8 +19,11 @@ class App extends Component {
       fdMounted: false,
       isFullyLoaded: false,
       autoloadEnabled: true,
+      page: 1,
+      selectedSpirit: null
     }
   }
+
   updateSpirits(s){
     let sdata = this.state.spirits;
     sdata.push(s);
@@ -57,17 +62,16 @@ class App extends Component {
     }
     return 0;
   }
+  mountFd() {
+    this.setState({fdMounted: true});
+  }
   componentDidMount(){
     if(this.state.spiritTotal < 1) {
       this.getTotalSpirits();
     }
     this.setState({fdMounted: true});
-    if(!this.state.isFullyLoaded && this.state.autoloadEnabled) {
-      setInterval(() => {
-        this.setState({fdMounted: true});
-      }, 2500);
     }
-  }
+  
   render()
   {
     return (
@@ -83,10 +87,12 @@ class App extends Component {
             spiritTotal={this.state.spiritTotal}
             /> 
             : null 
-            }
-            <Body
+        }
+            <Page
               spirits={this.state.spirits}
               spiritTotal={this.state.spiritTotal}
+              mountFd={this.mountFd}
+              isFullyLoaded={this.state.isFullyLoaded}
             />
       </div>
     );

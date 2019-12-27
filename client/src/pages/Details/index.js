@@ -12,7 +12,7 @@ class Details extends Component {
     render() {
 
         return (
-            <div>
+            <div class="wrapper">
                 <DHead 
                     changeToHome={this.props.changeToHome}
                     nextSpirit={this.props.nextSpirit}

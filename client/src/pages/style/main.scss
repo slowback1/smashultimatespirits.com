@@ -1,0 +1,15 @@
+.s64 {
+    @import '64/main';
+}
+.Melee {
+    @import 'melee/main';
+}
+.Brawl {
+    @import 'brawl/main';
+}
+.WiiU {
+    @import 'wiiu/main';
+}
+.Ultimate {
+    @import 'ultimate/main';
+}

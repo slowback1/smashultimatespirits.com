@@ -8,7 +8,7 @@ class DBody extends Component {
 
     render() {
         return (
-            <div>
+            <div class="dbody">
                 <p>{this.props.spirit.id}. {this.props.spirit.name}</p>
                 <img src={require(`../../../img/spiritImgs/${this.props.spirit.id}.png`)} alt={this.props.spirit.name} />
                 <p>{this.props.spirit.description}</p>

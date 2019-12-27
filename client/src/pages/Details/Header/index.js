@@ -12,9 +12,9 @@ class DHead extends Component {
     }
     render() {
         return (
-            <div>
+            <div class="dhead">
                 <button onClick={() => this.props.previousSpirit()}>leftarrow</button>
-                <button onClick={() => this.props.changeToHome()}>leftarrow</button>
+                <button onClick={() => this.props.changeToHome()}>home</button>
                 <button onClick={() => this.props.nextSpirit()}>rightarrow</button>
             </div>
         )
