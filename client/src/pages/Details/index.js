@@ -9,12 +9,17 @@ class Details extends Component {
 
 
     }
+    componentDidUpdate() {
+        if(this.props.spirit.id > this.props.spirits.length - 5) {
+            this.props.mountFd();
+        }
+    }
     render() {
 
         return (
             <div class="wrapper">
                 <DHead 
-                    changeToHome={this.props.changeToHome}
+                    changePage={this.props.changePage}
                     nextSpirit={this.props.nextSpirit}
                     previousSpirit={this.props.previousSpirit}    
                 />
@@ -24,8 +29,6 @@ class Details extends Component {
             </div>
         )
     }
-
-    
 }
 
 export default Details;

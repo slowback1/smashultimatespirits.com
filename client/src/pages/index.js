@@ -5,6 +5,8 @@ import './style/index.css';
 
 import Details from './Details/index';
 import HomePage from './Home/index';
+import Credits from './Credits/index';
+import Quiz from './Quiz/index';
 
 
 class Page extends Component {
@@ -12,9 +14,9 @@ class Page extends Component {
         super(props);
 
         this.changeToDetails = this.changeToDetails.bind(this);
-        this.changeToHome = this.changeToHome.bind(this);
         this.nextSpirit = this.nextSpirit.bind(this);
         this.previousSpirit = this.previousSpirit.bind(this);
+        this.changePage = this.changePage.bind(this);
 
         this.state = {
             selectedSpirit: null,
@@ -22,18 +24,22 @@ class Page extends Component {
             themeset:5
         }
     }
-    changeToDetails(spirit) {
+    changeToDetails(spirit) { 
         this.setState({
             page: 2,
             selectedSpirit: spirit
         });
+        if(
+            this.state.selectedSpirit !== null && 
+            this.state.selectedSpirit.id < this.props.spirits.length - 5
+            ) {
+            this.props.mountFd();
+        }
     }
-    changeToHome() {
+    changePage(pageNumber) {
         this.setState({
-            page: 1,
+            page: pageNumber
         });
-
-        
     }
     componentDidUpdate() {
         if(!this.props.isFullyLoaded && this.state.page !== 1) {
@@ -76,14 +82,22 @@ class Page extends Component {
                     spirits={this.props.spirits}
                     changeToDetails={this.changeToDetails}
                     mountFd={this.props.mountFd}
+                    changePage={this.changePage}
                 />,
             2: <Details
-                    changeToHome={this.changeToHome}
+                    changePage={this.changePage}
                     nextSpirit={this.nextSpirit}
                     previousSpirit={this.previousSpirit}
                     spirit={this.state.selectedSpirit}
+                    mountFd={this.props.mountFd}
+                    spirits={this.props.spirits}
             />,
-            
+            3: <Credits 
+                    changePage={this.changePage}
+            />,
+            4: <Quiz
+                    changePage={this.changePage}
+                />
         }
 
         const theme = {

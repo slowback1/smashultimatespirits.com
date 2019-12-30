@@ -12,7 +12,9 @@ class HomePage extends Component {
 
         return (
             <div class="wrapper">
-                <Header />
+                <Header
+                    changePage={this.props.changePage}
+                />
                 {items}
                 <Waypoint
                     onEnter={this.props.mountFd}

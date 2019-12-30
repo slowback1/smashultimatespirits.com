@@ -14,7 +14,7 @@ class DHead extends Component {
         return (
             <div class="dhead">
                 <button onClick={() => this.props.previousSpirit()}>leftarrow</button>
-                <button onClick={() => this.props.changeToHome()}>home</button>
+                <button onClick={() => this.props.changePage(1)}>home</button>
                 <button onClick={() => this.props.nextSpirit()}>rightarrow</button>
             </div>
         )

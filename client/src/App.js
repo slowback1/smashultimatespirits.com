@@ -18,7 +18,7 @@ class App extends Component {
       spiritTotal: 0,
       fdMounted: false,
       isFullyLoaded: false,
-      autoloadEnabled: true,
+      autoloadEnabled: false,
       page: 1,
       selectedSpirit: null
     }
@@ -66,9 +66,16 @@ class App extends Component {
     this.setState({fdMounted: true});
   }
   componentDidMount(){
+    //load fontawesome icons
+    const script = document.createElement('script');
+    script.src = Config.faurl;
+    document.body.appendChild(script);
+
+    //initialize max value
     if(this.state.spiritTotal < 1) {
       this.getTotalSpirits();
     }
+    //load first set of spirits
     this.setState({fdMounted: true});
     }
   
