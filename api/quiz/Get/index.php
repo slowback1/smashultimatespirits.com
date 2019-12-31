@@ -28,7 +28,7 @@
     {
         $headers = getallheaders();
 
-        $banlist = [0];
+        $banlist = array();
 
         if(isset($headers['banlist']))
         {  
