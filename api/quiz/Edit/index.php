@@ -27,7 +27,7 @@
                 $wrongAns3 = $c->cf->sanitize($postBody->wrongAns3);
 
                 $stmt = $c->conn->prepare(
-                    "UPDATE quizquestions SET question = ?, corAns = ?, wrongAns1 = ?, wrongAns2 = ?, wrongAns3 = ? WHERE id = ?"
+                    "UPDATE quizQuestions SET question = ?, corAns = ?, wrongAns1 = ?, wrongAns2 = ?, wrongAns3 = ? WHERE id = ?"
                 );
                 $stmt->bind_param("siiiii",
                 $question, $corAns, $wrongAns1, $wrongAns2, $wrongAns3, $id);

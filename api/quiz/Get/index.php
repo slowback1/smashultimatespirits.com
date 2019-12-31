@@ -40,7 +40,7 @@
         {
             if($_GET['id'] === 'r')
             {
-                $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizquestions WHERE NOT id IN (?) ORDER BY RAND() LIMIT 1");
+                $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions WHERE NOT id IN (?) ORDER BY RAND() LIMIT 1");
                 $stmt->bind_param("s", $banString);
             }
             else

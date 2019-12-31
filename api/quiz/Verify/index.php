@@ -16,7 +16,7 @@
             $answer = $c->cf->sanitize($postBody->answer);
 
             $stmt = $c->conn->prepare(
-                "SELECT corAns FROM quizquestions WHERE id = ? LIMIT 1"
+                "SELECT corAns FROM quizQuestions WHERE id = ? LIMIT 1"
             );
             $stmt->bind_param("s", $id);
 
