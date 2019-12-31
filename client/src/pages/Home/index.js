@@ -11,9 +11,10 @@ class HomePage extends Component {
             <SpiritBox key={s.id} spirit={s} changeToDetails={this.props.changeToDetails} />);
 
         return (
-            <div class="wrapper">
+            <div className="wrapper">
                 <Header
                     changePage={this.props.changePage}
+                    changeTheme={this.props.changeTheme}
                 />
                 {items}
                 <Waypoint

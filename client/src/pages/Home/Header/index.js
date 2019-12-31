@@ -5,9 +5,10 @@ import Hamburger from './Hamburger/index';
 class Header extends Component {
     render() {
         return (
-            <div class="header">
+            <div className="header">
                 <Hamburger
                     changePage={this.props.changePage}
+                    changeTheme={this.props.changeTheme}
                 />
                 <img className="headerImg" onClick={() => this.props.changePage(1)} src={HeaderBG} alt="header background" />
                 

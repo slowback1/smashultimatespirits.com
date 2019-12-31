@@ -7,6 +7,8 @@ import Details from './Details/index';
 import HomePage from './Home/index';
 import Credits from './Credits/index';
 import Quiz from './Quiz/index';
+import LoginPage from './Login/index';
+import RegisterPage from './Register/index';
 
 
 class Page extends Component {
@@ -17,6 +19,7 @@ class Page extends Component {
         this.nextSpirit = this.nextSpirit.bind(this);
         this.previousSpirit = this.previousSpirit.bind(this);
         this.changePage = this.changePage.bind(this);
+        this.changeTheme = this.changeTheme.bind(this);
 
         this.state = {
             selectedSpirit: null,
@@ -41,8 +44,11 @@ class Page extends Component {
             page: pageNumber
         });
     }
+    changeTheme(theme) {
+        this.setState({themeset: theme});
+    }
     componentDidUpdate() {
-        if(!this.props.isFullyLoaded && this.state.page !== 1) {
+        if(!this.props.isFullyLoaded && this.state.page !== 1 && false) {
             setInterval(() => {this.props.mountFd()}, 5000)
         }
     }
@@ -83,6 +89,8 @@ class Page extends Component {
                     changeToDetails={this.changeToDetails}
                     mountFd={this.props.mountFd}
                     changePage={this.changePage}
+                    changeTheme={this.changeTheme}
+
                 />,
             2: <Details
                     changePage={this.changePage}
@@ -90,14 +98,23 @@ class Page extends Component {
                     previousSpirit={this.previousSpirit}
                     spirit={this.state.selectedSpirit}
                     mountFd={this.props.mountFd}
+                    fdMounted={this.props.fdMounted}
                     spirits={this.props.spirits}
             />,
             3: <Credits 
                     changePage={this.changePage}
+                    changeTheme={this.changeTheme}
             />,
             4: <Quiz
                     changePage={this.changePage}
-                />
+                    changeTheme={this.changeTheme}
+                />,
+            5: <LoginPage
+                changePage={this.changePage}
+            />,
+            6: <RegisterPage 
+                changePage={this.changePage}
+            />
         }
 
         const theme = {
@@ -109,7 +126,7 @@ class Page extends Component {
         }
 
         return (
-            <div class={theme[this.state.themeset]}>
+            <div className={theme[this.state.themeset]}>
                 {pages[this.state.page]}
             </div>
         )

@@ -10,6 +10,7 @@ class Credits extends Component {
             <div class="wrapper">
                 <Header
                     changePage={this.props.changePage}
+                    changeTheme={this.props.changeTheme}
                 />
                 <div class="credits">
                     <h2>Logical Keyboard Tapper</h2>

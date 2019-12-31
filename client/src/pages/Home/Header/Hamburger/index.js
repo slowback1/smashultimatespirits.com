@@ -20,7 +20,7 @@ class Hamburger extends Component {
 
     render() {
         return (
-            <div class="hamburger">
+            <div className="hamburger">
                 <Menu 
                     left 
 
@@ -29,6 +29,7 @@ class Hamburger extends Component {
                     <MenuContents
                         closeMenu={this.closeMenu}
                         changePage={this.props.changePage}
+                        changeTheme={this.props.changeTheme}
                     />
                 </Menu>
             </div>

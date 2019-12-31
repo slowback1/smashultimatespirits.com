@@ -1,0 +1,6 @@
+/* this is here until I get around to properlly writing the css, so the page is viewable without images taking up an entire screens worth of real estate */
+
+.quizAnswer img {
+    height: 6em;
+    width: auto;
+}

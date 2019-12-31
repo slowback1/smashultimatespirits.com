@@ -10,7 +10,7 @@ class Details extends Component {
 
     }
     componentDidUpdate() {
-        if(this.props.spirit.id > this.props.spirits.length - 5) {
+        if(this.props.spirit.id > this.props.spirits.length - 5 && !this.props.fdMounted) {
             this.props.mountFd();
         }
     }

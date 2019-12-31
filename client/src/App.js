@@ -99,6 +99,7 @@ class App extends Component {
               spirits={this.state.spirits}
               spiritTotal={this.state.spiritTotal}
               mountFd={this.mountFd}
+              fdMounted={this.state.fdMounted}
               isFullyLoaded={this.state.isFullyLoaded}
             />
       </div>
