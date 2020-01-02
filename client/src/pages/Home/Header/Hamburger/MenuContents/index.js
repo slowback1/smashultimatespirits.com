@@ -11,8 +11,6 @@ class MenuContents extends Component {
                 
                 <p onClick={() => this.props.changePage(3)}>Credits</p>
                 <p onClick={() => this.props.changePage(4)}>Quiz Game</p>
-                <p onClick={() => this.props.changePage(5)}>Login</p>
-                <p onClick={() => this.props.changePage(6)}>Register</p>
                 <br />
                 <br />
                 <h2>Theme Set:</h2>

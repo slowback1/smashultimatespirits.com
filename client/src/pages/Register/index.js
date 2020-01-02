@@ -35,11 +35,9 @@ class RegisterPage extends Component {
 
         return (
             <div>
-                <h1 onClick={() => this.props.changePage(1)}>Click this to return to index</h1>
                 <form onSubmit={this.handleRegister}>
                     <label>Username:
                         <input type="text" value={this.state.username} onChange={this.handleUserChange} />
-                        
                     </label>
                     <label>Password:
                         <input type="password" value={this.state.password} onChange={this.handlePassChange} />

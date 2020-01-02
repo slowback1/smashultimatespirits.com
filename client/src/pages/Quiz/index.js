@@ -65,6 +65,7 @@ class Quiz extends Component {
                     <QuizBody 
                         quizQuestion={this.state.quizQuestion}
                         fetchQuizQuestion={this.fetchQuizQuestion}
+                        handleModal={this.props.handleModal}
                     />
                 }
                 <Footer />

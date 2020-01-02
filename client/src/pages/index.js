@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
+import Modal from 'react-modal';
 
 import './style/index.css';
 
+import Modals from './Modals/index';
 import Details from './Details/index';
 import HomePage from './Home/index';
 import Credits from './Credits/index';
 import Quiz from './Quiz/index';
 import LoginPage from './Login/index';
 import RegisterPage from './Register/index';
+
+Modal.setAppElement("#root");
+
 
 
 class Page extends Component {
@@ -20,11 +25,14 @@ class Page extends Component {
         this.previousSpirit = this.previousSpirit.bind(this);
         this.changePage = this.changePage.bind(this);
         this.changeTheme = this.changeTheme.bind(this);
+        this.handleModal = this.handleModal.bind(this);
 
         this.state = {
             selectedSpirit: null,
             page: 1,
-            themeset:5
+            themeset:5,
+            modalOpen: false,
+            modalType: 0,
         }
     }
     changeToDetails(spirit) { 
@@ -46,24 +54,16 @@ class Page extends Component {
     }
     changeTheme(theme) {
         this.setState({themeset: theme});
-    }
-    componentDidUpdate() {
-        if(!this.props.isFullyLoaded && this.state.page !== 1 && false) {
-            setInterval(() => {this.props.mountFd()}, 5000)
-        }
-    }
-    componentDidMount() {
         const cookies = new Cookies();
 
-        if(cookies.get('theme')) {
-            this.setState({theme: cookies.get('theme')})
-        } else {
-            cookies.set('theme', 1, {
-                path: "/"
-            });
-        }
+        cookies.set('theme', theme, { path: "/" });
     }
-    
+    handleModal(type) {
+        this.setState({
+            modalOpen: true,
+            modalType: type
+        })
+    }
     nextSpirit() {
         const isCurrentSpirit = (element) => element === this.state.selectedSpirit;
         let curIndex = this.props.spirits.findIndex(isCurrentSpirit);
@@ -82,6 +82,19 @@ class Page extends Component {
             this.setState({selectedSpirit: this.props.spirits[curIndex - 1]});
         }
     }
+    componentDidMount() {
+        const cookies = new Cookies();
+
+        if(cookies.get('theme')) {
+            this.setState({themeset: Number(cookies.get('theme'))})
+        } else {
+            cookies.set('theme', 1, {
+                path: "/"
+            });
+        }
+    }
+    
+
     render(){
         const pages = {
             1: <HomePage
@@ -108,6 +121,7 @@ class Page extends Component {
             4: <Quiz
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
+                    handleModal={this.handleModal}
                 />,
             5: <LoginPage
                 changePage={this.changePage}
@@ -127,6 +141,22 @@ class Page extends Component {
 
         return (
             <div className={theme[this.state.themeset]}>
+                <Modal
+                    isOpen={this.state.modalOpen}
+                    contnetLabel={"Modal"}
+                    style={
+                        {
+                            content: {
+                                color: 'white',
+                                background: 'black'
+                            }
+                        }
+                    }
+                >
+                    <Modals 
+                        modalType={this.state.modalType}
+                    />
+                </Modal>
                 {pages[this.state.page]}
             </div>
         )

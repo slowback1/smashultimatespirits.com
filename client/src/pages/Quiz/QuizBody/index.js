@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
-import Modal from 'react-modal';
 
 import Config from '../../../config/index.json';
 
 import QuizAnswer from './Answer/index';
-import ModalContent from './ModalContent/index';
 
-Modal.setAppElement('#root');
 
 class QuizBody extends Component {
     constructor(props) {
@@ -18,7 +15,6 @@ class QuizBody extends Component {
 
         this.state = {
             selectedAnswer: -1,
-            modalOpen: false,
             lastQuestionWasCorrect: false
         }
     }
@@ -55,14 +51,6 @@ class QuizBody extends Component {
             );
         }
     }
-    handleModal(response) {
-        this.setState({
-            modalOpen: true,
-            lastQuestionWasCorrect: response 
-        });
-
-        setTimeout(() => this.setState({modalOpen: false}), 5000);
-    }
     handleAnswer(questionId) {
         if(this.state.selectedAnswer === -1) {
             return false;
@@ -81,7 +69,13 @@ class QuizBody extends Component {
             .then(json => {
                 this.addToBanList(questionId);
                 this.updateScoreIfAnsweredCorrectly(json);
-                this.handleModal(json.responseBody);
+                let mt;
+                if(json.responseBody) {
+                    mt = 201;
+                } else {
+                    mt = 202;
+                }
+                this.props.handleModal(mt);
                 this.props.fetchQuizQuestion();
             })
             .catch(err => console.error(err));
@@ -101,22 +95,6 @@ class QuizBody extends Component {
         }
         return (
             <div>
-                <Modal
-                    isOpen={this.state.modalOpen}
-                    contentLabel="Quiz Modal"
-                    style={ 
-                        {
-                            content: {
-                                color: 'white',
-                                background: 'black'
-                            }
-                        }
-                    }
-                >
-                    <ModalContent
-                        correct={this.state.lastQuestionWasCorrect}
-                    />
-                </Modal>
                 <p>{this.props.quizQuestion.question}</p>
                 {items}
                 <button onClick={() => this.handleAnswer(this.props.quizQuestion.id)}>Submit Answer</button>

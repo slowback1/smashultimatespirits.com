@@ -28,7 +28,6 @@ class LoginPage extends Component {
 
         return (
             <div>
-                <h1 onClick={() => this.props.changePage(1)}>Click here to return to index</h1>
                 <form onSubmit={this.handleLogin}>
                     <label>Username:
                         <input type="text" value={this.state.username} onChange={this.handleUserChange} />

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Config from './config/index.json';
+
 import FetchData from './FetchData/index';
+import Token from './Token/index';
+
 import Page from './pages/index';
 
 class App extends Component {
@@ -10,6 +13,8 @@ class App extends Component {
     this.dismountFd = this.dismountFd.bind(this);
     this.doneLoading = this.doneLoading.bind(this);
     this.mountFd = this.mountFd.bind(this);
+    this.dismountToken = this.dismountToken.bind(this);
+    this.addToken = this.addToken.bind(this);
 
 
     this.state = {
@@ -20,10 +25,18 @@ class App extends Component {
       isFullyLoaded: false,
       autoloadEnabled: false,
       page: 1,
-      selectedSpirit: null
+      selectedSpirit: null,
+      token: null,
+      tokenMounted: true,
+
     }
   }
-
+  dismountToken() {
+    this.setState({tokenMounted: false})
+  }
+  addToken(token) {
+    this.setState({token: token});
+  }
   updateSpirits(s){
     let sdata = this.state.spirits;
     sdata.push(s);
@@ -94,6 +107,14 @@ class App extends Component {
             spiritTotal={this.state.spiritTotal}
             /> 
             : null 
+        }
+        {
+          this.state.tokenMounted ?
+            <Token 
+              addToken={this.addToken}
+              dismountToken={this.dismountToken}
+            />
+          : null
         }
             <Page
               spirits={this.state.spirits}
