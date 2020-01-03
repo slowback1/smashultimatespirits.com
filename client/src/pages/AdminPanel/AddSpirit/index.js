@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
 
 import Config from '../../../config/index.json';
 import SeriesList from '../../../models/SeriesList';
@@ -31,20 +32,31 @@ class AddSpirit extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        
+        const postData = {
+            id: this.state.id,
+            name: this.state.name,
+            game: this.state.game,
+            game2: (this.state.game2 === "" ? "n" : this.state.game2),
+            year: this.state.year,
+            series: this.state.series,
+            description: this.state.description,
+            author: this.state.author
+        }
         let url = Config.apiurl + "/spirits/add/";
         let options = {
             method: "POST",
             headers: {
-                "token": this.props.token
-            }
+                "token": this.props.token,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData)
         };
         fetch(url, options)
             .then(res => res.json())
             .then(json => {
                 if(json.responseID === 202) {
                     //call handleModal([WHATEVER THE ADD SPIRIT ID IS])
-                    //call changeAdminPage([WHATEVER THE MAIN ADMIN PANEL ID IS])
+                    this.props.changeAdminPage(0);
                 } else {
                     //call handleModal([WHATERVER THE ERROR ID IS])
                 }
@@ -66,15 +78,15 @@ class AddSpirit extends Component {
             game2: e.target.value
         });
     }
-    hanldeYearChange(e) {
+    handleYearChange(e) {
         this.setState({
             year: e.target.value
         });
     }
     handleSeriesChange(e) {
         this.setState({
-            series: e.target.value
-        })
+            series: e.value
+        });
     }
     handleDescriptionChange(e) {
         this.setState({
@@ -93,38 +105,43 @@ class AddSpirit extends Component {
     }
 
     render() {
-        let items;
-        for(var i = 0; i < (SeriesList.length / 2); i++) {
-            let value = SeriestList[i];
-            let name = SeriestList[i + 100];
-            items = items + <option value={value}>{name}</option>
+        
+        let options = [];
+        for(let i = 0; i < (Object.keys(SeriesList).length / 2); i++) {
+            let value = SeriesList[i];
+            let name = SeriesList[i + 100];
+            options.push({value: value, label: name});
         }
         return (
             <div>
-                <form onSubmit={() => this.handleSubmit()}>
-                    <label for="id">ID:
-                        <input type="number" value={this.state.id} onChange={() => this.handleIdChange()} />
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="id">ID:
+                        <input type="number" value={this.state.id} onChange={this.handleIdChange} />
                     </label>
-                    <label for="name">Name:
-                        <input type="text" value={this.state.name} onChange={() => this.handleNameChange()} />
+                    <label htmlFor="name">Name:
+                        <input type="text" value={this.state.name} onChange={this.handleNameChange} />
                     </label>
-                    <label for="game">Games:
-                        <input type="text" value={this.state.game} onChange={() => this.handleGameChange()} />
+                    <label htmlFor="game">Games:
+                        <input type="text" value={this.state.game} onChange={ this.handleGameChange} />
                     </label>
-                    <label for="game2">Second Game (Optional):
-                        <input type="text" value={this.state.game2} onChange={() => this.handleGame2Change()} />
+                    <label htmlFor="game2">Second Game (Optional):
+                        <input type="text" value={this.state.game2} onChange={this.handleGame2Change} />
                     </label>
-                    <label for="year">Release Year:
-                        <input type="number" value={this.state.year} onChange={() => this.handleYearChange()} />
+                    <label htmlFor="year">Release Year:
+                        <input type="number" value={this.state.year} onChange={this.handleYearChange} />
                     </label>
-                    <label for="series">Series:
-                        {items}
+                    <label htmlFor="series">Series:
+                        <Select 
+                        options={options}
+                        onChange={this.handleSeriesChange}
+                        onInputSelect={this.handleSeriesChange}
+                        />
                     </label>
-                    <label for="description">Description:
-                        <input type="textarea" value={this.state.description} onChange={() => this.handleDescriptionChange()} />
+                    <label htmlFor="description">Description:
+                        <input type="textarea" value={this.state.description} onChange={this.handleDescriptionChange} />
                     </label>
-                    <label for="author">Author:
-                        <input type="text" value={this.state.author} onChange={() => this.handleAuthorChange()} />
+                    <label htmlFor="author">Author:
+                        <input type="text" value={this.state.author} onChange={this.handleAuthorChange} />
                     </label>
                     <input type="submit" value="Add Spirit" />
                 </form>

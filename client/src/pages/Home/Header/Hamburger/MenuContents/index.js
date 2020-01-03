@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 
 class MenuContents extends Component {
-        
-    
+    constructor(props) {
+        super(props);
+
+        this.checkToken = this.checkToken.bind(this);
+
+        this.state = {
+            isAdmin: false
+        }
+    }    
+    checkToken() {
+        if(this.props.token !== null) {
+            this.setState({isAdmin: true});
+        }
+    }
+
+    componentDidMount() {
+        this.checkToken();
+    }
     render() {
         
 
@@ -11,6 +27,9 @@ class MenuContents extends Component {
                 
                 <p onClick={() => this.props.changePage(3)}>Credits</p>
                 <p onClick={() => this.props.changePage(4)}>Quiz Game</p>
+                {
+                this.state.isAdmin ? <p onClick={() => this.props.changePage(5)}>Admin Panel</p> : <p onClick={() => this.props.changePage(5)}>Admin Panel</p>
+                }
                 <br />
                 <br />
                 <h2>Theme Set:</h2>

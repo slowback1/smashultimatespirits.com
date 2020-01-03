@@ -1,13 +1,20 @@
-import react, { Component } from 'react';
+import React, { Component } from 'react';
+import AdminHome from './AdminHome/index';
+import AddSpirit from './AddSpirit/index';
+
 
 class AdminPanel extends Component {
     constructor(props) {
         super(props);
-
-        this.changeAdminForm = this.changeAdminForm.bind(this);
+        this.changeAdminPage = this.changeAdminPage.bind(this);
+        
+        this.state = {
+            currentPage: 0
+        }
     }
+
     changeAdminPage(pageId) {
-        return pageId;
+        this.setState({currentPage: pageId});
     }
     componentDidMount() {
         if(this.props.token === null) {
@@ -17,10 +24,18 @@ class AdminPanel extends Component {
     }
 
     render() {
-
+        const pages = {
+            0: <AdminHome
+                changeAdminPage={this.changeAdminPage}
+            />,
+            1: <AddSpirit
+                changeAdminPage={this.changeAdminPage}
+                token={this.props.token}
+            />,
+        }
         return (
             <div>
-
+                {pages[this.state.currentPage]}
             </div>
         )
     }

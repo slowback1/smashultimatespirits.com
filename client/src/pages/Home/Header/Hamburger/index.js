@@ -30,6 +30,7 @@ class Hamburger extends Component {
                         closeMenu={this.closeMenu}
                         changePage={this.props.changePage}
                         changeTheme={this.props.changeTheme}
+                        token={this.props.token}
                     />
                 </Menu>
             </div>

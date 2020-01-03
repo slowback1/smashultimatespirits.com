@@ -60,6 +60,7 @@ class Quiz extends Component {
                 <Header 
                     changePage={this.props.changePage}
                     changeTheme={this.props.changeTheme}
+                    token={this.props.token}
                 />
                 {   (this.state.quizQuestion !== null) && 
                     <QuizBody 

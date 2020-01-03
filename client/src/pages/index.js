@@ -9,8 +9,7 @@ import Details from './Details/index';
 import HomePage from './Home/index';
 import Credits from './Credits/index';
 import Quiz from './Quiz/index';
-import LoginPage from './Login/index';
-import RegisterPage from './Register/index';
+import AdminPanel from './AdminPanel/index';
 
 Modal.setAppElement("#root");
 
@@ -103,6 +102,7 @@ class Page extends Component {
                     mountFd={this.props.mountFd}
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
+                    token={this.props.token}
 
                 />,
             2: <Details
@@ -117,17 +117,17 @@ class Page extends Component {
             3: <Credits 
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
+                    token={this.props.token}
             />,
             4: <Quiz
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
                     handleModal={this.handleModal}
+                    token={this.props.token}
                 />,
-            5: <LoginPage
+            5: <AdminPanel
                 changePage={this.changePage}
-            />,
-            6: <RegisterPage 
-                changePage={this.changePage}
+                token={this.props.token}
             />
         }
 

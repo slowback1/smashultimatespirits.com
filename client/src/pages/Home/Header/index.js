@@ -9,6 +9,7 @@ class Header extends Component {
                 <Hamburger
                     changePage={this.props.changePage}
                     changeTheme={this.props.changeTheme}
+                    token={this.props.token}
                 />
                 <img className="headerImg" onClick={() => this.props.changePage(1)} src={HeaderBG} alt="header background" />
                 

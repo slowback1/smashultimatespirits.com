@@ -11,6 +11,7 @@ class Credits extends Component {
                 <Header
                     changePage={this.props.changePage}
                     changeTheme={this.props.changeTheme}
+                    token={this.props.token}
                 />
                 <div class="credits">
                     <h2>Logical Keyboard Tapper</h2>

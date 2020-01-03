@@ -122,6 +122,7 @@ class App extends Component {
               mountFd={this.mountFd}
               fdMounted={this.state.fdMounted}
               isFullyLoaded={this.state.isFullyLoaded}
+              token={this.state.token}
             />
       </div>
     );
