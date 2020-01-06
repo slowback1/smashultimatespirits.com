@@ -6,7 +6,8 @@ class Spirit {
             game2 = "", 
             series = "", 
             description = "", 
-            author = ""
+            author = "",
+            year = -1
             ) {
         this.id = id;
         this.name = name;
@@ -15,6 +16,7 @@ class Spirit {
         this.series = series;
         this.description = description;
         this.author = author;
+        this.year = year;
     }
     validate() {
         if(
@@ -24,7 +26,8 @@ class Spirit {
             this.game2 === "" ||
             this.series === "" ||
             this.description === "" ||
-            this.author === ""
+            this.author === "" ||
+            this.year === -1
             ) {
                 return false;
             } else {
