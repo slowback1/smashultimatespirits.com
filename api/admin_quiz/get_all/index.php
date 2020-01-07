@@ -22,42 +22,13 @@
             $wrongAns2,
             $wrongAns3
         );
-        return $q->build();
+        return $q->build_admin();
     }
-    if($_SERVER['REQUEST_METHOD'] === 'GET')
+    if($_SERVER['REQUEST_METHOD'] === "GET")
     {
-        $headers = getallheaders();
-
-        $banlist = array();
-
-        if(isset($headers['banlist']))
-        {  
-            $banlist = $c->cf->sanitize($headers['banlist']);
-
-        }
-        $banString = "'" . implode("','",$banlist) . "'";
-        if(isset($_GET['id']))
-        {
-            if($_GET['id'] === 'r')
-            {
-                $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions WHERE NOT id IN (?) ORDER BY RAND() LIMIT 1");
-                $stmt->bind_param("s", $banString);
-            }
-            else
-            {
-            $id = $c->cf->sanitize($_GET['id']);
-            $stmt = $c->conn->prepare( "SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions WHERE id = ? LIMIT 1");
-
-            $stmt->bind_param("i", $id);
-            }
-        }
-        else
-        {
-            $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions");
-        }
+        $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions ORDER BY id ASC");
         $stmt->execute();
         $stmt->store_result();
-
         $stmt->bind_result(
             $id,
             $question,
@@ -81,13 +52,13 @@
         if(sizeof($resArr) > 0)
         {
             $response = new Response(ResponseCodes::Recieved, $resArr);
-        }
+        } 
         else
         {
             $response = new Response(ResponseCodes::BadInput, "Incorrect Input");
         }
     }
-    else
+    else 
     {
         $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
     }

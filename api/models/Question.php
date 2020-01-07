@@ -42,5 +42,16 @@
                 "answers" => $answersArr
             );
         }
+        public function build_admin() 
+        {
+            return array(
+                "id" => $this->id,
+                "question" => $this->question,
+                "correctAnswer" => $this->corAns,
+                "wrongAnswer1" => $this->wrongAns1,
+                "wrongAnswer2" => $this->wrongAns2,
+                "wrongAnswer3" => $this->wrongAns3
+            );
+        }
     }
 ?>
