@@ -3,12 +3,43 @@ import SpiritBox from './SpiritBox/index';
 import Header from './Header/index';
 import Footer from './Footer/index';
 import { Waypoint } from 'react-waypoint';
+import scrollToComponent from 'react-scroll-to-component';
 
 class HomePage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.updateShownLength = this.updateShownLength.bind(this);
+
+        this.state = {
+            shownLength: 50
+        }
+    }
+
+    updateShownLength() {
+        this.setState({
+            shownLength: this.state.shownLength + 50
+        });
+    }
+    componentDidMount() {
+        if(this.props.selectedSpirit !== null) {
+            scrollToComponent(this[`SBREF${this.props.selectedSpirit.id}`],{
+                align: 'top',
+                duration: 1
+            });
+        }
+    }
 
     render() {
-        const items = this.props.spirits.map((s) =>
-            <SpiritBox key={s.id} spirit={s} changeToDetails={this.props.changeToDetails} />);
+        const items = this.props.spirits.map((s) => 
+            <SpiritBox 
+                key={s.id} 
+                spirit={s} 
+                changeToDetails={this.props.changeToDetails} 
+                ref={i => {
+                    this[`SBREF${s.id}`] = i
+                }}
+                />);
 
         return (
             <div className="wrapper">

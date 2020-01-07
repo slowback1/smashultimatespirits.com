@@ -9,8 +9,9 @@ class FetchData extends Component {
             .then(res => res.json())
             .then(jdata => {
                 if(jdata.responseID === 201){
+                    let resArr = this.props.spirits;
                     jdata.responseBody.map(s =>{
-                        this.props.updateSpirits(new Spirit(
+                        resArr.push(new Spirit(
                             s.id,
                             s.name, 
                             s.game, 
@@ -19,10 +20,8 @@ class FetchData extends Component {
                             s.description, 
                             s.author
                             ));
-                            if(s.id === this.props.spiritTotal) {
-                                this.props.doneLoading();
-                            }
-                            return 1;
+                        this.props.updateSpirits(resArr);
+                        return 1;
                         
                     });
                     this.props.dismountFd();

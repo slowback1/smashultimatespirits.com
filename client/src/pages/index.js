@@ -47,9 +47,17 @@ class Page extends Component {
         }
     }
     changePage(pageNumber) {
+        if(this.state.page === 2) {
         this.setState({
             page: pageNumber
         });
+        }
+        else {
+            this.setState({
+                page:pageNumber,
+                selectedSpirit: null
+            })
+        }
     }
     changeTheme(theme) {
         this.setState({themeset: theme});
@@ -103,6 +111,10 @@ class Page extends Component {
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
                     token={this.props.token}
+                    shownLength={this.props.shownLength}
+                    updateShownLength={this.props.updateShownLength}
+                    selectedSpirit={this.state.selectedSpirit}
+
 
                 />,
             2: <Details

@@ -15,10 +15,12 @@ class App extends Component {
     this.mountFd = this.mountFd.bind(this);
     this.dismountToken = this.dismountToken.bind(this);
     this.addToken = this.addToken.bind(this);
+    this.updateShownLength = this.updateShownLength.bind(this);
 
 
     this.state = {
       spirits: [],
+      shownLength: 50,
       length: 0,
       spiritTotal: 0,
       fdMounted: false,
@@ -37,16 +39,16 @@ class App extends Component {
   addToken(token) {
     this.setState({token: token});
   }
-  updateSpirits(s){
-    let sdata = this.state.spirits;
-    sdata.push(s);
-    sdata.sort(this.compareSpirits)
-    this.setState({      
-      spirits: sdata
-    });
+  updateShownLength() {
     this.setState({
-      length: this.state.spirits.length
-    })
+      shownLength: this.state.shownLength + 50
+    });
+  }
+  updateSpirits(s){
+    this.setState({      
+      spirits: s,
+      length: Number(this.state.length) + 1
+    });
   }
   doneLoading(){
     this.setState({isFullyLoaded: true});
@@ -90,6 +92,7 @@ class App extends Component {
     }
     //load first set of spirits
     this.setState({fdMounted: true});
+    
     }
   
   render()
@@ -100,11 +103,12 @@ class App extends Component {
         this.state.fdMounted ? 
           <FetchData  
             updateSpirits={this.updateSpirits} 
-            min={this.state.length + 1} 
-            max={this.state.length + 50} 
+            min={Number(this.state.length) + 1} 
+            max={Number(this.state.length) + 50} 
             dismountFd={this.dismountFd} 
             doneLoading={this.doneLoading} 
             spiritTotal={this.state.spiritTotal}
+            spirits={this.state.spirits}
             /> 
             : null 
         }
@@ -123,6 +127,8 @@ class App extends Component {
               fdMounted={this.state.fdMounted}
               isFullyLoaded={this.state.isFullyLoaded}
               token={this.state.token}
+              shownLength={this.state.shownLength}
+              updateShownLength={this.updateShownLength}
             />
       </div>
     );
