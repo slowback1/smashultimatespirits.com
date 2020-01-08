@@ -114,6 +114,7 @@ class Page extends Component {
                     shownLength={this.props.shownLength}
                     updateShownLength={this.props.updateShownLength}
                     selectedSpirit={this.state.selectedSpirit}
+                    themeset={this.state.themeset}
 
 
                 />,
@@ -125,21 +126,25 @@ class Page extends Component {
                     mountFd={this.props.mountFd}
                     fdMounted={this.props.fdMounted}
                     spirits={this.props.spirits}
+                    themeset={this.state.themeset}
             />,
             3: <Credits 
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
                     token={this.props.token}
+                    themeset={this.state.themeset}
             />,
             4: <Quiz
                     changePage={this.changePage}
                     changeTheme={this.changeTheme}
                     handleModal={this.handleModal}
                     token={this.props.token}
+                    themeset={this.state.themeset}
                 />,
             5: <AdminPanel
                 changePage={this.changePage}
                 token={this.props.token}
+                themeset={this.state.themeset}
             />
         }
 

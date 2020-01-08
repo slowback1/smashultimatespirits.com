@@ -1,0 +1,8 @@
+.wrapper {
+    @extend %flex-column;
+    overflow-x: hidden;
+    background-color: black;
+    color: white;
+    
+    @import './SpiritBoxes/index.scss';
+}

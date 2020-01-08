@@ -36,6 +36,7 @@ class HomePage extends Component {
                 key={s.id} 
                 spirit={s} 
                 changeToDetails={this.props.changeToDetails} 
+                themeset={this.props.themeset}
                 ref={i => {
                     this[`SBREF${s.id}`] = i
                 }}
@@ -48,7 +49,9 @@ class HomePage extends Component {
                     changeTheme={this.props.changeTheme}
                     token={this.props.token}
                 />
-                {items}
+                <div className="spiritBoxes">
+                    {items}
+                </div>
                 <Waypoint
                     onEnter={this.props.mountFd}
                 />

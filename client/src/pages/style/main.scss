@@ -1,3 +1,5 @@
+@import 'generics/extends';
+@import 'generics/mixins';
 .s64 {
     @import '64/main';
 }
@@ -12,4 +14,9 @@
 }
 .Ultimate {
     @import 'ultimate/main';
+}
+
+.headerImg {
+    width: 100vw;
+    height: auto;
 }

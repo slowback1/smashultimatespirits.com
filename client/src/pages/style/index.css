@@ -1,19 +1,40 @@
-.s64 button {
-    background-color: blue;
+.s64 .wrapper .spiritBoxes, .s64 .wrapper {
+  display: flex;
+  flex-direction: column;
 }
-.Melee button {
-    background-color: red;
+
+.s64 .wrapper .spiritBoxes .spiritBox {
+  display: flex;
+  flex-direction: row;
 }
-.Brawl button {
-    background-color: green;
+
+.s64 .wrapper {
+  overflow-x: hidden;
+  background-color: black;
+  color: white;
 }
-.WiiU button {
-    background-color: brown;
+.s64 .wrapper .spiritBoxes .spiritBox {
+  border: 1px solid white;
+  padding: 14px 0 14px 0;
+  width: 80%;
+  margin-left: 10%;
+  align-items: center;
 }
-.Ultimate button {
-    background-color: cyan;
+.s64 .wrapper .spiritBoxes .spiritBox .spiritId {
+  margin-right: 10%;
 }
+.s64 .wrapper .spiritBoxes .spiritBox .spiritImage {
+  display: none;
+}
+.s64 .wrapper .spiritBoxes .spiritBox .sericon {
+  height: 16px;
+  width: 16px;
+  order: -1;
+}
+
 .headerImg {
-    width: 100vw;
-    height: auto;
+  width: 100vw;
+  height: auto;
 }
+
+/*# sourceMappingURL=index.css.map */
