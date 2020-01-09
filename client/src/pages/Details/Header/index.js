@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Keyhandler, { KEYPRESS } from 'react-key-handler';
 
 
 class DHead extends Component {
@@ -13,9 +14,19 @@ class DHead extends Component {
     render() {
         return (
             <div class="dhead">
-                <button onClick={() => this.props.previousSpirit()}>leftarrow</button>
-                <button onClick={() => this.props.changePage(1)}>home</button>
-                <button onClick={() => this.props.nextSpirit()}>rightarrow</button>
+                <Keyhandler
+                    keyEventName={KEYPRESS}
+                    keyValue="d"
+                    onKeyHandle={this.props.nextSpirit}
+                />
+                <Keyhandler
+                    keyEventName={KEYPRESS}
+                    keyValue="a"
+                    onKeyHandle={this.props.previousSpirit}
+                />
+                <i className="fa fa-caret-left" onClick={() => this.props.previousSpirit()}></i>
+                <button onClick={() => this.props.changePage(1)}>Return to Spirits</button>
+                <i className="fa fa-caret-right" onClick={() => this.props.nextSpirit()}></i>
             </div>
         )
     }

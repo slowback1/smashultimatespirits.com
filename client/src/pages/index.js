@@ -74,10 +74,16 @@ class Page extends Component {
     nextSpirit() {
         const isCurrentSpirit = (element) => element === this.state.selectedSpirit;
         let curIndex = this.props.spirits.findIndex(isCurrentSpirit);
+        let value;
         if(curIndex === this.props.spiritTotal - 1) {
-            this.setState({selectedSpirit: this.props.spirits[0]});
+            value = this.props.spirits[0];
         } else {
-            this.setState({selectedSpirit: this.props.spirits[curIndex + 1]});
+            value = this.props.spirits[curIndex + 1];
+        }
+        if(this.props.fdMounted) {
+            setTimeout(() => this.setState({selectedSpirit: value}), 1500);
+        } else {
+            this.setState({selectedSpirit: value});
         }
     }
     previousSpirit() {

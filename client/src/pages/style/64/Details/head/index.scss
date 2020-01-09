@@ -1,0 +1,23 @@
+.dhead {
+    position: fixed;
+    right: 10%;
+    top: 15%;
+    font-size: 3rem;
+    color: #d36b25;
+    @extend %flex-row;
+    justify-content: space-between;
+    width: 10%;
+    :nth-child(2) {
+        position: fixed;
+        top: 5%;
+        right: 10%;
+        width: 100%;
+        text-align: right;
+        color: #e4c640;
+        background-color: #3a3737;
+        border: none;
+        font-size: 3rem;
+        font-weight: bold;
+        z-index: 1;
+    }
+}

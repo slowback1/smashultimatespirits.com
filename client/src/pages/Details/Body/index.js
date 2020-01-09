@@ -9,11 +9,17 @@ class DBody extends Component {
     render() {
         return (
             <div class="dbody">
-                <p>{this.props.spirit.id}. {this.props.spirit.name}</p>
-                <img src={require(`../../../img/spiritImgs/${this.props.spirit.id}.png`)} alt={this.props.spirit.name} />
-                <p>{this.props.spirit.description}</p>
-                <p>{this.props.spirit.game1}</p>
-                <p>{this.props.spirit.game2 !== "n" ? this.props.spirit.game2 : null}</p>
+                <p className="detailsName">{this.props.spirit.id}. {this.props.spirit.name}</p>
+                <img className="detailsSpiritImage" src={require(`../../../img/spiritImgs/${this.props.spirit.id}.png`)} alt={this.props.spirit.name} />
+                <div className="detailsText">
+                    <p className="detailsDescription">{this.props.spirit.description}</p>
+                    <div className="detailsGames">
+                        <p>{this.props.spirit.game1}</p>
+                        <p>{this.props.spirit.game2 !== "n" ? this.props.spirit.game2 : null}</p>
+                    </div>
+                </div>
+                <img className="detailsSeriesIcon" src={require(`../../../img/series/${this.props.spirit.series}.png`)} alt={this.props.spirit.series} />
+                
             </div>
         )
     }
