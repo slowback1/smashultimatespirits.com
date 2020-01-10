@@ -1,9 +1,9 @@
-.s64 .wrapper .spiritBoxes, .s64 .wrapper {
+.Brawl .wrapper, .Melee .wrapper, .s64 .wrapper .spiritBoxes, .s64 .wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.s64 .wrapper .dhead, .s64 .wrapper .spiritBoxes .spiritBox {
+.Melee .dhead, .s64 .wrapper .dhead, .s64 .wrapper .spiritBoxes .spiritBox {
   display: flex;
   flex-direction: row;
 }
@@ -40,6 +40,9 @@
   height: 16px;
   width: 16px;
   order: -1;
+}
+.s64 .wrapper .spiritBoxes .spiritBox:focus {
+  background-color: #333;
 }
 .s64 .wrapper .dbody {
   position: absolute;
@@ -123,6 +126,113 @@
   font-size: 3rem;
   font-weight: bold;
   z-index: 1;
+}
+
+.Melee .dbody {
+  position: absolute;
+  bottom: 20%;
+}
+.Melee .dbody .detailsName {
+  position: fixed;
+  right: 15%;
+  top: 8%;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #c9be21;
+  text-align: center;
+}
+.Melee .dbody .detailsSpiritImage {
+  position: fixed;
+  left: 15%;
+  top: 45%;
+  z-index: 100;
+  height: 35%;
+  width: auto;
+  animation: 10s YAxisSpin reverse none infinite;
+  -moz-animation: 10s YAxisSpin reverse none infinite;
+  animation-delay: 0;
+}
+.Melee .dbody .detailsSeriesIcon {
+  display: none;
+}
+.Melee .dbody .detailsText {
+  position: fixed;
+  right: 10%;
+  top: 20%;
+  width: 35%;
+  font-size: 2rem;
+}
+.Melee .dbody .detailsGames {
+  background-color: #232323;
+  border: 3px solid #6ac29a;
+  border-radius: 5px;
+  color: lightblue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+}
+.Melee .dbody .detailsGames p {
+  margin-left: 5px;
+}
+.Melee .dhead {
+  position: fixed;
+  left: 40%;
+  top: 1%;
+  font-size: 3rem;
+  color: #63974a;
+  transform: skew(-10deg);
+  justify-content: space-between;
+}
+.Melee .dhead :nth-child(2) {
+  color: #71c0ce;
+  background-color: #63974a;
+  border: none;
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: italic;
+  z-index: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.Melee .wrapper {
+  background-color: #041250;
+  color: #f7e4e4;
+  overflow-x: hidden;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.Brawl .wrapper {
+  overflow-x: hidden;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #27829e;
+  color: #d6dada;
+}
+.Brawl .wrapper .dbody {
+  position: absolute;
+  bottom: 20%;
+}
+.Brawl .wrapper .dbody .detailsName {
+  position: fixed;
+  right: 10%;
+  top: 14%;
+  font-size: 3rem;
+  font-weight: bold;
+  z-index: 10;
+}
+.Brawl .wrapper .dbody .detailsSpiritImage {
+  position: fixed;
+  left: 5%;
+  top: 45%;
+  z-index: 100;
+  height: 30%;
+  width: auto;
+}
+.Brawl .wrapper .dbody .detailsSeriesIcon {
+  display: none;
 }
 
 .headerImg {

@@ -1,0 +1,10 @@
+@import './details/index';
+
+.wrapper {
+    background-color: #041250;
+    color: #f7e4e4;
+    @extend %flex-column;
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+}

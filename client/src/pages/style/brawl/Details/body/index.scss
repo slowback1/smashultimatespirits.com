@@ -1,0 +1,24 @@
+.dbody {
+    position: absolute;
+    bottom: 20%;
+    .detailsName {
+        position: fixed;
+        right: 10%;
+        top: 14%;
+        font-size: 3rem;
+        font-weight: bold;
+        z-index: 10;
+        
+    }
+    .detailsSpiritImage {
+        position: fixed;
+        left: 5%;
+        top:45%;
+        z-index: 100;
+        height: 30%;
+        width: auto;
+    }
+    .detailsSeriesIcon {
+        display: none;
+    }
+}

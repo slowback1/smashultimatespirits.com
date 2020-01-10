@@ -1,0 +1,22 @@
+.dhead {
+    position: fixed;
+    left: 40%;
+    top: 1%;
+    font-size: 3rem;
+    @extend %flex-row;
+    color: #63974a;
+    transform: skew(-10deg);
+    justify-content: space-between;
+    :nth-child(2) {
+
+        color: #71c0ce;
+        background-color: #63974a;
+        border: none;
+        font-size: 3rem;
+        font-weight: bold;
+        font-style: italic;
+        z-index: 1;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
