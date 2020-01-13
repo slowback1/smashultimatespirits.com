@@ -22,7 +22,7 @@
             {
                 $gstmt->store_result();
                 $gstmt->bind_result($username, $password);
-                while($stmt->fetch())
+                while($gstmt->fetch())
                 {
                     if($c->auth->compareHash($p, $password))
                     {

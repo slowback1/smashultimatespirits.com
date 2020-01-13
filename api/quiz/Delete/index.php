@@ -12,7 +12,7 @@
             if(isset($deleteBody->id))
             {
                 $del = $c->cf->sanitize($deleteBody->id);
-                $stmt = $c->conn->prepare("DELETE from quizQuestions WHERE id = ? LIMIT 1");
+                $stmt = $c->conn->prepare("DELETE from quizquestions WHERE id = ? LIMIT 1");
                 $stmt->bind_param('i', $del);
                 if($stmt->execute())
                 {

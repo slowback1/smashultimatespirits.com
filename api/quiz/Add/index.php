@@ -25,10 +25,23 @@
                 $wrongAns3 = $c->cf->sanitize($postBody->wrongAns3);
 
                 $stmt = $c->conn->prepare(
-                    "INSERT INTO quizQuestions (question, corAns, wrongAns1, wrongAns2, wrongAns3) VALUES (?, ?, ?, ?, ?)"
+                    "INSERT INTO quizquestions 
+                        (
+                            question, 
+                            corAns, 
+                            wrongAns1, 
+                            wrongAns2, 
+                            wrongAns3
+                        ) 
+                            VALUES (?, ?, ?, ?, ?)"
                 );
                 $stmt->bind_param("siiii",
-                $question, $corAns, $wrongAns1, $wrongAns2, $wrongAns3);
+                    $question, 
+                    $corAns, 
+                    $wrongAns1,
+                    $wrongAns2, 
+                    $wrongAns3
+                );
 
                 if($stmt->execute())
                 {

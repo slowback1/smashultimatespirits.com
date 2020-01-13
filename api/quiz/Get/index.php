@@ -28,7 +28,7 @@
     {
         $headers = getallheaders();
 
-        $banlist = array();
+        $banlist = [0];
 
         if(isset($headers['banlist']))
         {  
@@ -46,14 +46,14 @@
             else
             {
             $id = $c->cf->sanitize($_GET['id']);
-            $stmt = $c->conn->prepare( "SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions WHERE id = ? LIMIT 1");
+            $stmt = $c->conn->prepare( "SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizquestions WHERE id = ? LIMIT 1");
 
             $stmt->bind_param("i", $id);
             }
         }
         else
         {
-            $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions");
+            $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizquestions");
         }
         $stmt->execute();
         $stmt->store_result();
