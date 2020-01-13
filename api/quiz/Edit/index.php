@@ -27,36 +27,77 @@
                 $wrongAns3 = $c->cf->sanitize($postBody->wrongAns3);
 
                 $stmt = $c->conn->prepare(
-                    "UPDATE quizquestions SET question = ?, corAns = ?, wrongAns1 = ?, wrongAns2 = ?, wrongAns3 = ? WHERE id = ?"
+                    "UPDATE quizquestions 
+                        SET     
+                            question = ?, 
+                            corAns = ?, 
+                            wrongAns1 = ?, 
+                            wrongAns2 = ?, 
+                            wrongAns3 = ? 
+                        WHERE id = ?"
                 );
                 $stmt->bind_param("siiiii",
-                $question, $corAns, $wrongAns1, $wrongAns2, $wrongAns3, $id);
+                    $question, 
+                    $corAns, 
+                    $wrongAns1, 
+                    $wrongAns2, 
+                    $wrongAns3, 
+                    $id
+                );
 
                 if($stmt->execute())
                 {
-                    $cVal = "id = " . $id . ",question = " . $question . ", correct answer = " . $corAns . ", wrong answer 1 = " . $wrongAns1 . ", wrong answer 2 = " . $wrongAns2 . ", wrong answer 3 = " . $wrongAns3;
+                    $cVal = "
+                        id = " . 
+                        $id . 
+                        ",question = " . 
+                        $question . 
+                        ", correct answer = " . 
+                        $corAns . 
+                        ", wrong answer 1 = " . 
+                        $wrongAns1 . 
+                        ", wrong answer 2 = " . 
+                        $wrongAns2 . 
+                        ", wrong answer 3 = " . 
+                        $wrongAns3;
+
                     $c->addToChangeLog("qe", $cVal);
-                    $response = new Response(ResponseCodes::Edited, "Edit was a success");
+                    $response = new Response(
+                        ResponseCodes::Edited, 
+                        "Edit was a success"
+                    );
                 }
                 else
                 {
-                    $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                    $response = new Response(
+                        ResponseCodes::ServerError, 
+                        "Unknown Error"
+                    );
                 }
             }
             else
             {
-                $response = new Response(ResponseCodes::BadInput, "Missing Input");
+                $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Missing Input"
+                );
             }
 
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Authorization Needed");
+            $response = new Response(
+                ResponseCodes::BadInput, 
+                "Authorization Needed"
+            );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method"
+        );
     }
     echo $response->build();
 ?>

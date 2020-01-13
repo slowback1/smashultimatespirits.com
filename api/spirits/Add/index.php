@@ -34,38 +34,87 @@
 
 
                 $stmt = $c->conn->prepare(
-                    "INSERT INTO spirits (id, name, game, game2, series, description, author, release_year) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO spirits 
+                        (id, 
+                        name, 
+                        game, 
+                        game2, 
+                        series, 
+                        description, 
+                        author, 
+                        release_year) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                    );
                     
                 $stmt->bind_param("issssssi", 
-                $id, $name, $game, $game2, $series, $description, $author, $year);
+                    $id, 
+                    $name, 
+                    $game, 
+                    $game2, 
+                    $series, 
+                    $description, 
+                    $author, 
+                    $year
+                );
 
                 //stmt->execute will return false is query fails
                 if($stmt->execute()) 
                 {
-                    $clVal = "id = " . strval($id) . ", name = " . $name . ", game = " . $game . ", game2 = " . $game2 . ", series = " . $series . ", description = " . $description . ", author = " . $author . ", release_year = " . $year;
+                    $clVal = "
+                        id = " . 
+                        strval($id) . 
+                        ", name = " . 
+                        $name . 
+                        ", game = " . 
+                        $game . 
+                        ", game2 = " . 
+                        $game2 . 
+                        ", series = " . 
+                        $series . 
+                        ", description = " . 
+                        $description . 
+                        ", author = " . 
+                        $author . 
+                        ", release_year = " . 
+                        $year;
                     $c->addToChangeLog("sa", $clVal);
 
-                    $response = new Response(ResponseCodes::Created, "Insert was a success");
+                    $response = new Response(
+                            ResponseCodes::Created, 
+                            "Insert was a success"
+                        );
                 } 
                 else 
                 {
-                    $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                    $response = new Response(
+                        ResponseCodes::ServerError, 
+                        "Unknown Error"
+                    );
                 }
 
             } 
             else 
             {
-                $response = new Response(ResponseCodes::BadInput, "Missing Input");
+                $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Missing Input"
+                );
             }
         } 
         else 
         {
-            $response = new Response(ResponseCodes::BadInput, "No Authorization");
+            $response = new Response(
+                ResponseCodes::BadInput, 
+                "No Authorization"
+            );
         }
     } 
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method"
+        );
     }
     echo $response->build();
 ?>

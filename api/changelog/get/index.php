@@ -22,12 +22,25 @@
                 $min = intval($rarr[1]);
                 $max = intval($rarr[0]);
             }
-            $stmt = $c->conn->prepare("SELECT user, type, value FROM changelog WHERE id BETWEEN ? AND ? ORDER BY id");
+            $stmt = $c->conn->prepare("
+            SELECT 
+                user, 
+                type, 
+                value 
+            FROM changelog 
+            WHERE id BETWEEN ? AND ? 
+            ORDER BY id");
             $stmt->bind_param("ii", $min, $max);
         }
         else
         {
-            $stmt = $c->conn->prepare("SELECT user, type, value FROM changelog ORDER BY id");
+            $stmt = $c->conn->prepare("
+                SELECT 
+                    user, 
+                    type, 
+                    value 
+                FROM changelog 
+                ORDER BY id");
         }
         if($stmt->execute())
         {
@@ -45,21 +58,29 @@
             }
             if(sizeof($resArr) > 0) 
             {
-                $response = new Response(ResponseCodes::Recieved, $resArr);
+                $response = new Response(
+                    ResponseCodes::Recieved, 
+                    $resArr);
             }
             else
             {
-                $response = new Response(ResponseCodes::BadInput, "Incorrect Input");
+                $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Incorrect Input");
             }
         }
         else
         {
-            $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+            $response = new Response(
+                ResponseCodes::ServerError, 
+                "Unknown Error");
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method");
     }
     echo $response->build();
 ?>

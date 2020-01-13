@@ -28,7 +28,11 @@
                 return false;
             }
             $username = $token->username;
-            $stmt = $this->conn->prepare("SELECT username FROM users WHERE username = ?");
+            $stmt = $this->conn->prepare("
+                SELECT username 
+                FROM users 
+                WHERE username = ?"
+            );
             $uname = $this->cf->sanitize($username);
             $stmt->bind_param("s", $uname);
             if($stmt->execute())
@@ -48,9 +52,16 @@
                 return false;
             }
             $clStmt = $this->conn->prepare(
-                "INSERT INTO changelog (user, type, value) VALUES (?, ?, ?)"
+                "INSERT INTO changelog 
+                    (user, 
+                    type,
+                    value) 
+                VALUES (?, ?, ?)"
             );
-            $clStmt->bind_param("sss", $user, $type, $value);
+            $clStmt->bind_param("sss", 
+                $user, 
+                $type, 
+                $value);
             if($clStmt->execute())
             {
                 return true;

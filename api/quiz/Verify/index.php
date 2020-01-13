@@ -16,7 +16,11 @@
             $answer = $c->cf->sanitize($postBody->answer);
 
             $stmt = $c->conn->prepare(
-                "SELECT corAns FROM quizQuestions WHERE id = ? LIMIT 1"
+                "SELECT 
+                    corAns 
+                    FROM quizQuestions 
+                    WHERE id = ? 
+                    LIMIT 1"
             );
             $stmt->bind_param("s", $id);
 
@@ -27,22 +31,34 @@
             {
                 if($corAns == $answer)
                 {
-                    $response = new Response(ResponseCodes::Ok, true);
+                    $response = new Response(
+                        ResponseCodes::Ok, 
+                        true
+                    );
                 }
                 else
                 {
-                    $response = new Response(ResponseCodes::Ok, false);
+                    $response = new Response(
+                        ResponseCodes::Ok, 
+                        false
+                    );
                 }
             }
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Missing Input");
+            $response = new Response(
+                ResponseCodes::BadInput, 
+                "Missing Input"
+            );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+            );
     }
 
     echo $response->build();

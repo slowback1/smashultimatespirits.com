@@ -7,7 +7,10 @@
     
     if($_SERVER['REQUEST_METHOD'] === 'GET') 
     {
-        $stmt = $c->conn->prepare("SELECT COUNT(id) FROM spirits");
+        $stmt = $c->conn->prepare(
+            "SELECT COUNT(id) 
+            FROM spirits"
+            );
         $stmt->execute();
         $stmt->store_result();
         
@@ -18,12 +21,18 @@
         $resArr = array();
         while($stmt->fetch()) 
         {
-            $response = new Response(ResponseCodes::Recieved, $count);
+            $response = new Response(
+                ResponseCodes::Recieved, 
+                $count
+            );
         }
     } 
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");  
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method"
+        );  
     }
     echo $response->build();
 ?>

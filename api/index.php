@@ -199,7 +199,10 @@
 
         )
     );
-    $res = new Response(ResponseCodes::Ok, $body);
+    $res = new Response(
+            ResponseCodes::Ok, 
+            $body
+        );
     echo $res->build();
 
 ?>

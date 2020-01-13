@@ -15,32 +15,50 @@
             {
 
                 $del = $c->cf->sanitize($deleteBody->id);
-                $stmt = $c->conn->prepare("DELETE FROM spirits WHERE id = ?");
+                $stmt = $c->conn->prepare(
+                    "DELETE FROM spirits 
+                    WHERE id = ?"
+                    );
                 $stmt->bind_param("i", $del);
 
                 if($stmt->execute()) 
                 {
                     $clVal = "id = " . strval($del);
                     $c->addToChangeLog("sd", $clVal);
-                    $response = new Response(ResponseCodes::Deleted, "Deletion Successful");
+                    $response = new Response(
+                        ResponseCodes::Deleted, 
+                        "Deletion Successful"
+                    );
                 } else 
                 {
-                    $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                    $response = new Response(
+                        ResponseCodes::ServerError, 
+                        "Unknown Error"
+                    );
                 }
             } 
             else 
             {
-                $response = new Response(ResponseCodes::BadInput, "No Input");
+                $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "No Input"
+                );
             }
         } 
         else 
         {
-            $response = new Response(ResponseCodes::BadInput, "No Authorization");
+            $response = new Response(
+                ResponseCodes::BadInput, 
+                "No Authorization"
+            );
         }
     } 
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method"
+        );
     }
     echo $response->build();
 ?>

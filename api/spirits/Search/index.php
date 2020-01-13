@@ -17,10 +17,27 @@
             $limit = $c->cf->sanitize($_GET['limit']);
             
             $stmt = $c->conn->prepare(
-                "SELECT id, name, game, series, description, author, release_year FROM spirits WHERE ? LIKE ? LIMIT ?"
+                "SELECT 
+                    id, 
+                    name, 
+                    game, 
+                    series, 
+                    description, 
+                    author, 
+                    release_year 
+                FROM 
+                    spirits 
+                WHERE 
+                    ? LIKE ? 
+                LIMIT 
+                    ?"
             );
 
-            $stmt->bind_param("ssi", $type, $query, $limit);
+            $stmt->bind_param("ssi", 
+                $type, 
+                $query, 
+                $limit
+            );
 
             $stmt->execute();
             $stmt->store_result();
@@ -52,21 +69,33 @@
             }
             if(sizeof($resArr) > 0)
             {
-                $response = new Response(ResponseCodes::Recived, $resArr);
+                $response = new Response(
+                        ResponseCodes::Recived, 
+                        $resArr
+                    );
             }
             else 
             {
-                $response = new Response(ResponseCodes::BadInput, "Incorrect Input");
+                $response = new Response(
+                        ResponseCodes::BadInput, 
+                        "Incorrect Input"
+                    );
             }
         }
         else 
         {
-            $response = new Response(ResponseCodes::BadInput, "Missing Input");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Missing Input"
+                );
         }
     }
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+            );
     }
     echo $response->build();
 ?>

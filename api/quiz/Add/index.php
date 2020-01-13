@@ -45,29 +45,55 @@
 
                 if($stmt->execute())
                 {
-                    $cVal = "question = " . $question . ", correct answer = " . $corAns . ", wrong answer 1 = " . $wrongAns1 . ", wrong answer 2 = " . $wrongAns2 . ", wrong answer 3 = " . $wrongAns3;
+                    $cVal = "
+                        question = " . 
+                        $question . 
+                        ", correct answer = " .
+                        $corAns . 
+                        ", wrong answer 1 = " 
+                        . $wrongAns1 . 
+                        ", wrong answer 2 = " . 
+                        $wrongAns2 . 
+                        ", wrong answer 3 = " . 
+                        $wrongAns3;
+                        
                     $c->addToChangeLog("qa", $cVal);
-                    $response = new Response(ResponseCodes::Created, "Insert was a success");
+                    $response = new Response(
+                        ResponseCodes::Created, 
+                        "Insert was a success"
+                    );
                 }
                 else
                 {
-                    $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                    $response = new Response(
+                        ResponseCodes::ServerError, 
+                        "Unknown Error"
+                    );
                 }
             }
             else
             {
-                $response = new Response(ResponseCodes::BadInput, "Missing Input");
+                $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Missing Input"
+                );
             }
 
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Authorization Needed");
+            $response = new Response(
+                ResponseCodes::BadInput, 
+                "Authorization Needed"
+            );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method"
+        );
     }
     echo $response->build();
 ?>

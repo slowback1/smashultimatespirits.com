@@ -26,8 +26,27 @@
                 $max = intval($rarr[0]);
             }
 
-            $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits WHERE id BETWEEN ? AND ? ORDER BY id");
-            $stmt->bind_param("ii", $min, $max);
+            $stmt = $c->conn->prepare(
+                "SELECT 
+                    id, 
+                    name, 
+                    game, 
+                    game2, 
+                    series, 
+                    description, 
+                    author, 
+                    release_year 
+                FROM 
+                    spirits 
+                WHERE 
+                    id BETWEEN ? AND ? 
+                ORDER BY 
+                    id"
+                );
+            $stmt->bind_param("ii", 
+                $min, 
+                $max
+            );
         }
         //block for singular queries
          else if(isset($_GET['id'])) 
@@ -36,18 +55,64 @@
             //get random one
             if($id === 'r') 
             {
-                $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits ORDER BY RAND() LIMIT 1");
+                $stmt = $c->conn->prepare(
+                    "SELECT 
+                        id, 
+                        name, 
+                        game, 
+                        game2, 
+                        series, 
+                        description, 
+                        author, 
+                        release_year 
+                    FROM 
+                        spirits 
+                    ORDER BY 
+                        RAND() 
+                    LIMIT 
+                        1"
+                );
             } 
             else 
             {
-                $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits WHERE id = ? LIMIT 1");
+                $stmt = $c->conn->prepare(
+                    "SELECT 
+                        id,    
+                        name, 
+                        game, 
+                        game2, 
+                        series, 
+                        description, 
+                        author, 
+                        release_year 
+                    FROM 
+                        spirits 
+                    WHERE 
+                        id = ? 
+                    LIMIT 
+                        1"
+                );
                 $stmt->bind_param("i", $id);
             }
         }
         //block for all queries 
         else 
         {
-            $stmt = $c->conn->prepare("SELECT id, name, game, game2, series, description, author, release_year FROM spirits ORDER BY id");  
+            $stmt = $c->conn->prepare(
+                "SELECT 
+                    id, 
+                    name, 
+                    game, 
+                    game2, 
+                    series, 
+                    description, 
+                    author, 
+                    release_year 
+                FROM 
+                    spirits 
+                ORDER BY 
+                    id"
+            );  
         }
         
         $stmt->execute();
@@ -80,16 +145,25 @@
         }
         if(sizeof($resArr) > 0) 
         {
-        $response = new Response(ResponseCodes::Recieved, $resArr);
+        $response = new Response(
+            ResponseCodes::Recieved, 
+            $resArr
+        );
         }
         else 
         {
-            $response = new Response(ResponseCodes::BadInput, "Incorrect Input");
+            $response = new Response(
+                ResponseCodes::BadInput, 
+                "Incorrect Input"
+            );
         }
     } 
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");  
+        $response = new Response(
+            ResponseCodes::WrongMethod, 
+            "Wrong Method"
+        );  
     }
     echo $response->build();
 ?>

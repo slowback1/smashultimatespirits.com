@@ -20,34 +20,59 @@
 
             if($sk === $c->config['register_key'])
             {
-                $stmt = $c->conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+                $stmt = $c->conn->prepare(
+                    "INSERT INTO 
+                        users 
+                            (username, 
+                            password) 
+                    VALUES 
+                        (?, ?)"
+                );
                 $hp = $c->auth->hash($p);
-                $stmt->bind_param('ss', $u, $hp);
+                $stmt->bind_param('ss', 
+                    $u, 
+                    $hp
+                );
                 if($stmt->execute())
                 {
                     $tci = new Token($u, $hp);
                     $tokenParams = $tci->build();
                     $nuToken = $c->auth->setToken($tokenParams);
-                    $response = new Response(ResponseCodes::Ok, $nuToken);
+                    $response = new Response(
+                            ResponseCodes::Ok, 
+                            $nuToken
+                    );
                 }
                 else
                 {
-                    $response = new Response(ResponseCodes::BadInput, "user already exists");
+                    $response = new Response(
+                            ResponseCodes::BadInput, 
+                            "user already exists"
+                    );
                 }
             }
             else
             {
-                $response = new Response(ResponseCodes::BadInput, "Wrong Secret Key");
+                $response = new Response(
+                        ResponseCodes::BadInput, 
+                        "Wrong Secret Key"
+                );
             }
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Missing Input");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Missing Input"
+            );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+        );
     }
     echo $response->build();
 ?>

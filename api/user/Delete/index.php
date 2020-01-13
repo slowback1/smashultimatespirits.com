@@ -11,22 +11,38 @@
             $token = $c->auth->getToken();
             $user = $token->username;
 
-            $stmt = $c->conn->prepare("DELETE FROM users WHERE username = ? LIMIT 1");
+            $stmt = $c->conn->prepare(
+                "DELETE FROM 
+                    users 
+                WHERE 
+                    username = ? 
+                LIMIT 
+                    1"
+            );
             $stmt->bind_param("s", $user);
 
             if($stmt->execute())
             {
-                $response = new Response(ResponseCodes::Deleted, "Deletion Successful");
+                $response = new Response(
+                    ResponseCodes::Deleted, 
+                    "Deletion Successful"
+                );
             }
             else
             {
-                $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                $response = new Response(
+                        ResponseCodes::ServerError, 
+                        "Unknown Error"
+                    );
             }
         }
     }
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod);
+        $response = new Response(
+                ResponseCodes::WrongMethod,
+                "Wrong Method"
+            );
     }
 
     echo $response->build();

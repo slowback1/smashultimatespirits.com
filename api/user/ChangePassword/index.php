@@ -24,41 +24,68 @@
                 if($u == $user && $p == $pass)
                 {
                     $hp = $c->auth->hash($np);
-                    $stmt = $c->conn->prepare("UPDATE users SET password = ? WHERE username = ?");
-                    $stmt->bind_param("ss", $hp, $u);
+                    $stmt = $c->conn->prepare(
+                        "UPDATE 
+                            users 
+                        SET 
+                            password = ? 
+                        WHERE 
+                            username = ?"
+                    );
+                    $stmt->bind_param("ss", 
+                        $hp, 
+                        $u);
                     
                     if($stmt->execute())
                     {
                         $tci = new Token($u, $hp);
                         $tokenParams = $tci->build();
                         $nuToken = $c->auth->setToken($tokenParams);
-                        $response = new Response(ResponseCodes::Edited, $nuToken);
+                        $response = new Response(
+                                ResponseCodes::Edited, 
+                                $nuToken
+                            );
                     }
                     else
                     {
-                        $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                        $response = new Response(
+                                ResponseCodes::ServerError, 
+                                "Unknown Error"
+                            );
                     }
 
                 }
                 else
                 {
-                    $response = new Response(ResponseCodes::BadInput, "Username or password is incorrect");
+                    $response = new Response(
+                            ResponseCodes::BadInput, 
+                            "Username or password is incorrect"
+                        );
                 }
             }
             else
             {
-                $response = new  Response(ResponseCodes::BadInput, "Missing Input");
+                $response = new  Response(
+                        ResponseCodes::BadInput, 
+                        "Missing Input"
+                    );
             }
 
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Authorization needed");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Authorization needed"
+                );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+            );
     }
     echo $response->build();
 ?>

@@ -16,7 +16,17 @@
             $u = $c->cf->sanitize($postBody->username);
             $p = $c->cf->sanitize($postBody->password);
             
-            $gstmt = $c->conn->prepare("SELECT username, password FROM users WHERE username = ? LIMIT 1");
+            $gstmt = $c->conn->prepare(
+                "SELECT 
+                    username, 
+                    password 
+                FROM 
+                    users 
+                WHERE 
+                    username = ? 
+                LIMIT 
+                    1"
+            );
             $gstmt->bind_param("s", $u);
             if($gstmt->execute())
             {
@@ -29,27 +39,42 @@
                         $tci = new Token($username, $password);
                         $tokenParams = $tci->build();
                         $nuToken = $c->auth->setToken($tokenParams);
-                        $response = new Response(ResponseCodes::Ok, $nuToken);
+                        $response = new Response(
+                                ResponseCodes::Ok, 
+                                $nuToken
+                            );
                     }
                     else
                     {
-                        $response = new Response(ResponseCodes::BadInput, "Wrong Input");
+                        $response = new Response(
+                                ResponseCodes::BadInput, 
+                                "Wrong Input"
+                            );
                     }
                 }
             }
             else
             {
-                $response = new Response(ResponseCodes::BadInput, "Wrong Input");
+                $response = new Response(
+                        ResponseCodes::BadInput, 
+                        "Wrong Input"
+                    );
             }
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Missing Input");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Missing Input"
+                );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+            );
     }
     echo $response->build();
 ?>

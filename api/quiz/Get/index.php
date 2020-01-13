@@ -40,20 +40,52 @@
         {
             if($_GET['id'] === 'r')
             {
-                $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizQuestions WHERE NOT id IN (?) ORDER BY RAND() LIMIT 1");
+                $stmt = $c->conn->prepare("
+                    SELECT 
+                        id, 
+                        question, 
+                        corAns, 
+                        wrongAns1, 
+                        wrongAns2, 
+                        wrongAns3 
+                    FROM quizQuestions 
+                    WHERE NOT id IN (?) 
+                    ORDER BY RAND() 
+                    LIMIT 1"
+                );
                 $stmt->bind_param("s", $banString);
             }
             else
             {
             $id = $c->cf->sanitize($_GET['id']);
-            $stmt = $c->conn->prepare( "SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizquestions WHERE id = ? LIMIT 1");
+            $stmt = $c->conn->prepare( "
+                SELECT 
+                    id, 
+                    question, 
+                    corAns, 
+                    wrongAns1, 
+                    wrongAns2, 
+                    wrongAns3 
+                FROM quizquestions 
+                WHERE id = ? 
+                LIMIT 1"
+            );
 
             $stmt->bind_param("i", $id);
             }
         }
         else
         {
-            $stmt = $c->conn->prepare("SELECT id, question, corAns, wrongAns1, wrongAns2, wrongAns3 FROM quizquestions");
+            $stmt = $c->conn->prepare("
+                SELECT 
+                    id, 
+                    question, 
+                    corAns, 
+                    wrongAns1, 
+                    wrongAns2, 
+                    wrongAns3 
+                FROM quizquestions"
+            );
         }
         $stmt->execute();
         $stmt->store_result();
@@ -69,27 +101,37 @@
         $resArr = array();
         while($stmt->fetch())
         {
-            array_push($resArr, addQuestionToResponse(
-                $id,
-                $question,
-                $corAns,
-                $wrongAns1,
-                $wrongAns2,
-                $wrongAns3
+            array_push($resArr, 
+                addQuestionToResponse(
+                    $id,
+                    $question,
+                    $corAns,
+                    $wrongAns1,
+                    $wrongAns2,
+                    $wrongAns3
             ));
         }
         if(sizeof($resArr) > 0)
         {
-            $response = new Response(ResponseCodes::Recieved, $resArr);
+            $response = new Response(
+                    ResponseCodes::Recieved, 
+                    $resArr
+                );
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Incorrect Input");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Incorrect Input"
+                );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+            );
     }
 
     echo $response->build();

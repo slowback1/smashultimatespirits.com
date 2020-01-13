@@ -8,16 +8,25 @@
     {
         if($c->verifyUser())
         {
-            $response = new Response(ResponseCodes::Ok, true);
+            $response = new Response(
+                    ResponseCodes::Ok, 
+                    true
+            );
         }
         else
         {
-            $response = new Response(ResponseCodes::BadInput, "Bad Token");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "Bad Token"
+            );
         }
     }
     else
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+        );
     }
 
     echo $response->build();

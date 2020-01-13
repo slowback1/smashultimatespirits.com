@@ -32,39 +32,89 @@
                     $year = $c->cf->sanitize($postBody->year);
 
                 $stmt = $c->conn->prepare(
-                    "UPDATE spirits SET name = ?, game = ?, game2 = ?, series = ?, description = ?, author = ?, release_year = ? WHERE id= ? LIMIT 1"
+                    "UPDATE spirits 
+                    SET 
+                        name = ?, 
+                        game = ?, 
+                        game2 = ?, 
+                        series = ?, 
+                        description = ?, 
+                        author = ?, 
+                        release_year = ? 
+                    WHERE 
+                        id= ? 
+                    LIMIT 1"
                 );
                 
                 $stmt->bind_param("ssssssii", 
-                $name, $game, $game2, $series, $description, $author, $year, $id);
+                    $name, 
+                    $game, 
+                    $game2, 
+                    $series, 
+                    $description, 
+                    $author, 
+                    $year, 
+                    $id
+                );
 
-                //stmt->execute will return false is query fails
+                //stmt->execute will return false if query fails
                 if($stmt->execute()) 
                 {
-                    $clVal = "id = " . strval($id) . ", name = " . $name . ", game = " . $game . ", series = " . $series . ", description = " . $description . ", author = " . $author . ", release_year = " . $year;
+                    $clVal = "
+                        id = " . 
+                        strval($id) . 
+                        ", name = " . 
+                        $name . 
+                        ", game = " . 
+                        $game . 
+                        ", series = " . 
+                        $series . 
+                        ", description = " . 
+                        $description . 
+                        ", author = " . 
+                        $author . 
+                        ", release_year = " . 
+                        $year;
+
                     $c->addToChangeLog("se", $clVal);
-                    $response = new Response(ResponseCodes::Edited, "Update was a success");
+
+                    $response = new Response(
+                        ResponseCodes::Edited, 
+                        "Update was a success"
+                    );
                 } 
                 else 
                 {
-                    $response = new Response(ResponseCodes::ServerError, "Unknown Error");
+                    $response = new Response(
+                            ResponseCodes::ServerError, 
+                            "Unknown Error"
+                        );
                 }
 
             } 
             else 
             {
-                $response = new Response(ResponseCodes::BadInput, "Missing Input");
+                $response = new Response(
+                        ResponseCodes::BadInput, 
+                        "Missing Input"
+                    );
             }
         } 
         else 
         {
             
-            $response = new Response(ResponseCodes::BadInput, "No Authorization");
+            $response = new Response(
+                    ResponseCodes::BadInput, 
+                    "No Authorization"
+                );
         }
     } 
     else 
     {
-        $response = new Response(ResponseCodes::WrongMethod, "Wrong Method");
+        $response = new Response(
+                ResponseCodes::WrongMethod, 
+                "Wrong Method"
+            );
     }
 
     
