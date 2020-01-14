@@ -60,22 +60,22 @@
                 //stmt->execute will return false is query fails
                 if($stmt->execute()) 
                 {
-                    $clVal = "
-                        id = " . 
+                    $clVal = 
+                        "id &STOP2; " . 
                         strval($id) . 
-                        ", name = " . 
+                        "&STOP1; name &STOP2; " . 
                         $name . 
-                        ", game = " . 
+                        "&STOP1; game &STOP2;" . 
                         $game . 
-                        ", game2 = " . 
+                        "&STOP1; game2 &STOP2; " . 
                         $game2 . 
-                        ", series = " . 
+                        "&STOP1; series &STOP2; " . 
                         $series . 
-                        ", description = " . 
+                        "&STOP1; description &STOP2; " . 
                         $description . 
-                        ", author = " . 
+                        "&STOP1; author &STOP2; " . 
                         $author . 
-                        ", release_year = " . 
+                        "&STOP1; release_year &STOP2; " . 
                         $year;
                     $c->addToChangeLog("sa", $clVal);
 

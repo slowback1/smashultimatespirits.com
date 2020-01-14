@@ -19,7 +19,7 @@
                 $stmt->bind_param('i', $del);
                 if($stmt->execute())
                 {
-                    $cVal = "id = " . $del;
+                    $cVal = "id &STOP2; " . $del;
                     $c->addToChangeLog("qd", $cVal);
                     $response = new Response(
                         ResponseCodes::Deleted, 

@@ -26,8 +26,8 @@
 
         //standardized response for all queries
         public function build() {
-            return json_encode(array("
-                responseID" => $this->rc, 
+            return json_encode(array(
+                "responseID" => $this->rc, 
                 "responseBody" => $this->rb)
             );
         }

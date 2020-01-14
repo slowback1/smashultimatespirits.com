@@ -22,8 +22,7 @@
         public function build()
         {
             return array(
-                "uname" => $this->username,
-                "pw" => $this->password,
+                "username" => $this->username,
                 "id" => $this->IssuedDate
             );
         }

@@ -23,7 +23,7 @@
 
                 if($stmt->execute()) 
                 {
-                    $clVal = "id = " . strval($del);
+                    $clVal = "id &STOP2; " . strval($del);
                     $c->addToChangeLog("sd", $clVal);
                     $response = new Response(
                         ResponseCodes::Deleted, 

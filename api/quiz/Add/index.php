@@ -45,16 +45,16 @@
 
                 if($stmt->execute())
                 {
-                    $cVal = "
-                        question = " . 
+                    $cVal = 
+                        "question &STOP2;" . 
                         $question . 
-                        ", correct answer = " .
+                        "&STOP1; correct answer &STOP2;" .
                         $corAns . 
-                        ", wrong answer 1 = " 
+                        "&STOP1; wrong answer 1 &STOP2;" 
                         . $wrongAns1 . 
-                        ", wrong answer 2 = " . 
+                        "&STOP1; wrong answer 2 &STOP2;" . 
                         $wrongAns2 . 
-                        ", wrong answer 3 = " . 
+                        "&STOP1; wrong answer 3 &STOP2;" . 
                         $wrongAns3;
                         
                     $c->addToChangeLog("qa", $cVal);
