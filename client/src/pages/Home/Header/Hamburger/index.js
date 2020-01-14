@@ -31,6 +31,7 @@ class Hamburger extends Component {
                         changePage={this.props.changePage}
                         changeTheme={this.props.changeTheme}
                         token={this.props.token}
+                        isAdmin={this.props.isAdmin}
                     />
                 </Menu>
             </div>

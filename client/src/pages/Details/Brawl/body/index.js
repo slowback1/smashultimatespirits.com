@@ -21,3 +21,5 @@ class DBody extends Component {
         )
     }
 }
+
+export default DBody;

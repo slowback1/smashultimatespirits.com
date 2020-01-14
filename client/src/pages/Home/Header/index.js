@@ -10,6 +10,7 @@ class Header extends Component {
                     changePage={this.props.changePage}
                     changeTheme={this.props.changeTheme}
                     token={this.props.token}
+                    isAdmin={this.props.isAdmin}
                 />
                 <img className="headerImg" onClick={() => this.props.changePage(1)} src={HeaderBG} alt="header background" />
                 

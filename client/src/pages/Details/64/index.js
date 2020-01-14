@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DBody from './Body/index';
-import DHead from './Head/index';
+import DBody from './body/index';
+import DHead from './head/index';
 
 class DetailsPage1 extends Component {
     componentDidUpdate() {

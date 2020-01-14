@@ -47,6 +47,7 @@ class HomePage extends Component {
                 <Header
                     changePage={this.props.changePage}
                     changeTheme={this.props.changeTheme}
+                    isAdmin={this.props.isAdmin}
                     token={this.props.token}
                 />
                 <div className="spiritBoxes">

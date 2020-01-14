@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DBody from './body/index';
 import DHead from './head/index';
 
-class DetailsPageTwo extends Component {
+class DetailsPageThree extends Component {
     
     componentDidUpdate() {
         if(this.props.spirit.id > this.props.spirits.length - 5 && !this.props.fdMounted) {
@@ -25,4 +25,4 @@ class DetailsPageTwo extends Component {
             )
         }
     }
-export default DetailsPageTwo;
+export default DetailsPageThree;

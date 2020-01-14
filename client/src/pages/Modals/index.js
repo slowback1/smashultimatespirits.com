@@ -14,8 +14,12 @@ class Modals extends Component {
 
     quizResponseSecondLine() {
         const cookies = new Cookies();
-
-        let totalQuestions = cookies.get('banlist').split(',').length;
+        let totalQuestions;
+        if(cookies.get('banlist').length > 1){
+            totalQuestions = cookies.get('banlist').split(',').length;
+        } else {
+            totalQuestions = 1;
+        }
         let correctQuestions = cookies.get('quizScore');
 
         return <p>You have {correctQuestions} out of {totalQuestions} correct so far.</p>

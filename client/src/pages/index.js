@@ -29,7 +29,7 @@ class Page extends Component {
         this.state = {
             selectedSpirit: null,
             page: 1,
-            themeset:5,
+            themeset:1,
             modalOpen: false,
             modalType: 0,
         }
@@ -121,7 +121,7 @@ class Page extends Component {
                     updateShownLength={this.props.updateShownLength}
                     selectedSpirit={this.state.selectedSpirit}
                     themeset={this.state.themeset}
-
+                    isAdmin={this.props.isAdmin}
 
                 />,
             2: <Details
@@ -139,6 +139,7 @@ class Page extends Component {
                     changeTheme={this.changeTheme}
                     token={this.props.token}
                     themeset={this.state.themeset}
+                    isAdmin={this.props.isAdmin}
             />,
             4: <Quiz
                     changePage={this.changePage}
@@ -146,9 +147,11 @@ class Page extends Component {
                     handleModal={this.handleModal}
                     token={this.props.token}
                     themeset={this.state.themeset}
+                    isAdmin={this.props.isAdmin}
                 />,
             5: <AdminPanel
                 changePage={this.changePage}
+                isAdmin={this.props.isAdmin}
                 token={this.props.token}
                 themeset={this.state.themeset}
             />

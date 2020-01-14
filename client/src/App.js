@@ -129,6 +129,7 @@ class App extends Component {
               token={this.state.token}
               shownLength={this.state.shownLength}
               updateShownLength={this.updateShownLength}
+              isAdmin={this.props.isAdmin}
             />
       </div>
     );

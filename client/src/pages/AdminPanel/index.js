@@ -7,6 +7,7 @@ import AddQuestion from './AddQuestion/index';
 import EditQuestion from './EditQuestion/index';
 import DeleteQuestion from './DeleteQuestion/index';
 
+import './style/index.css';
 
 class AdminPanel extends Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class AdminPanel extends Component {
                 />
         }
         return (
-            <div>
+            <div className="adminArea">
                 {pages[this.state.currentPage]}
             </div>
         )
