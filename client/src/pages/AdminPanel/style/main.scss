@@ -1,7 +1,11 @@
 .adminArea {
     width: 100vw;
     min-height: 100vh;
-    background-color: #321322;
+    background-color: #111111;
     color: #bdbdcf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     @import './adminHome/index';
+    @import './adminHeader/index.scss';
 }

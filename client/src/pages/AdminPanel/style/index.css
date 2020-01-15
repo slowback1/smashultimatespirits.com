@@ -1,12 +1,58 @@
 .adminArea {
   width: 100vw;
   min-height: 100vh;
-  background-color: #321322;
+  background-color: #111111;
   color: #bdbdcf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .adminArea .adminHome {
   display: flex;
   flex-direction: column;
+  margin-top: 5vh;
+  align-self: center;
+}
+.adminArea .adminHome .changeLogItem {
+  width: 80%;
+  border: 1px solid #b6abbe;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.adminArea .adminHome .changeLogItem .values {
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+}
+.adminArea .adminHeader {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+}
+.adminArea .adminHeader button {
+  flex-grow: 1;
+  flex-shrink: 0;
+  background-color: #0c104b;
+  color: #eeeeee;
+  border: none;
+  border-left: 1px dotted #eeeeee;
+  font-size: 1rem;
+  opacity: 0.8;
+  transition: all 0.5s;
+}
+.adminArea .adminHeader button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.adminArea .adminHeader :first-child {
+  border-left: none;
+}
+@media screen and (max-width: 650px) {
+  .adminArea .adminHeader button {
+    font-size: 0.75rem;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

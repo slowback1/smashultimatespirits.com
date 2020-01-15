@@ -4,8 +4,8 @@ class ChangeLogValue extends Component {
 
 
     render() {
-        const vals = this.props.values.map((v) => {
-            return <div className="value">
+        const vals = this.props.values.map((v, i) => {
+            return <div className="value" key={i}>
                 <p>{v}</p>
             </div>
         });

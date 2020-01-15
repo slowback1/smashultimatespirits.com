@@ -1,4 +1,18 @@
 .adminHome {
     display: flex;
     flex-direction: column;
+    margin-top: 5vh;
+    align-self: center;
+    .changeLogItem {
+        width: 80%;
+        border: 1px solid #b6abbe;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .values {
+            justify-content: flex-start;
+            display: flex;
+            flex-direction: row;
+        }
+    }
 }

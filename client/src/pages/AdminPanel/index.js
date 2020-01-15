@@ -66,6 +66,7 @@ class AdminPanel extends Component {
             <div className="adminArea">
                 <AdminHeader 
                     changeAdminPage={this.changeAdminPage}
+                    changePage={this.props.changePage}
                 />
                 {pages[this.state.currentPage]}
             </div>
