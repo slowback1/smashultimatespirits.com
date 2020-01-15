@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import Config from '../../../config/index.json';
 import ChangeLog from  '../../../models/ChangeLog';
+import ChangeLogItem from './ChangeLogItem/index';
 
 
 
@@ -36,15 +37,17 @@ class AdminHome extends Component {
             })
     }
     render() {
-        
+        let items = this.state.changeLog.map((m, i) => {
+            return <ChangeLogItem
+                        key={i}
+                        type={m.type}
+                        user={m.user}
+                        values={m.value}
+                    />
+        });
         return(
             <div className="adminHome">
-                <button onClick={() => this.props.changeAdminPage(1)}>Add Spirit</button>
-                <button onClick={() => this.props.changeAdminPage(2)}>Edit Spirit</button>
-                <button onClick={() => this.props.changeAdminPage(3)}>Delete Spirit</button>
-                <button onClick={() => this.props.changeAdminPage(4)}>Add Question</button>
-                <button onClick={() => this.props.changeAdminPage(5)}>Edit Question</button>
-                <button onClick={() => this.props.changeAdminPage(6)}>Delete Question</button>
+                {items}
             </div>
         )
     }

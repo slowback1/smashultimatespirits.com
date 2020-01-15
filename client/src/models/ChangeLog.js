@@ -27,9 +27,10 @@ class ChangeLog {
                     this.type = "[REDACTED]";
                     break;
             }
-            let val = value.split(",");
-            val.map(v => {
-                return v.split("=");
+            let val = value.split("&STOP1;");
+            val.map(function(v, i){
+                val[i] = v.split("&STOP2;");
+                return '';
             });
             this.value = val;
             this.user = user;

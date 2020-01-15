@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import AdminHeader from './Header/index';
+
 import AdminHome from './AdminHome/index';
 import AddSpirit from './AddSpirit/index';
 import EditSpirit from './EditSpirit/index';
@@ -61,6 +64,9 @@ class AdminPanel extends Component {
         }
         return (
             <div className="adminArea">
+                <AdminHeader 
+                    changeAdminPage={this.changeAdminPage}
+                />
                 {pages[this.state.currentPage]}
             </div>
         )
